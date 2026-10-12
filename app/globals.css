@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Aug Lab design tokens — "darkroom / technical lab"
+   Spec: docs/DESIGN_SYSTEM.md. Dark-first; light theme via [data-theme="light"]
+   or prefers-color-scheme when no explicit choice is stored.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+  /* surfaces (dark) */
+  --bg: #0e0f11;
+  --surface-1: #15171a;
+  --surface-2: #1c1f23;
+  --surface-3: #252930;
+  --border: #2e333a;
+  --border-strong: #434a54;
+  /* text */
+  --text: #ebe9e5;
+  --text-muted: #a8a6a1;
+  --text-subtle: #8c8a85;
+  /* single warm accent: darkroom safelight amber */
+  --accent: #f2a03d;
+  --accent-hover: #ffb35c;
+  --accent-fg: #1a1206;
+  --accent-soft: rgb(242 160 61 / 0.14);
+  --accent-line: rgb(242 160 61 / 0.45);
+  /* status (desaturated, never used as brand) */
+  --success: #5cc98a;
+  --danger: #f07a72;
+  --info: #7aa7e8;
+  --success-soft: rgb(92 201 138 / 0.14);
+  --danger-soft: rgb(240 122 114 / 0.14);
+  --info-soft: rgb(122 167 232 / 0.14);
+  --focus: var(--accent);
+  --scrim: rgb(5 6 8 / 0.72);
+  --checker-a: #1a1d21;
+  --checker-b: #202328;
+
+  /* shadows */
+  --elev-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --elev-md: 0 4px 12px rgb(0 0 0 / 0.45);
+  --elev-lg: 0 12px 32px rgb(0 0 0 / 0.55);
+  --elev-overlay: 0 24px 64px rgb(0 0 0 / 0.65);
+
+
+  /* z-index scale */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-dropdown: 20;
+  --z-popover: 30;
+  --z-overlay: 40;
+  --z-modal: 50;
+  --z-toast: 60;
+
+  /* motion (<= 200ms) */
+  --dur-fast: 120ms;
+  --dur-base: 160ms;
+  --dur-slow: 200ms;
+
+  /* layout */
+  --header-h: 52px;
+  --actionbar-h: 64px;
+}
+
+/* light theme: explicit choice */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f5f2;
+  --surface-1: #ffffff;
+  --surface-2: #efede8;
+  --surface-3: #e5e2db;
+  --border: #d8d4cb;
+  --border-strong: #b3ada1;
+  --text: #1b1a17;
+  --text-muted: #54514a;
+  --text-subtle: #67635b;
+  --accent: #b45309;
+  --accent-hover: #92400e;
+  --accent-fg: #ffffff;
+  --accent-soft: rgb(180 83 9 / 0.1);
+  --accent-line: rgb(180 83 9 / 0.4);
+  --success: #1f7a4a;
+  --danger: #b42318;
+  --info: #2457a6;
+  --success-soft: rgb(31 122 74 / 0.1);
+  --danger-soft: rgb(180 35 24 / 0.1);
+  --info-soft: rgb(36 87 166 / 0.1);
+  --scrim: rgb(20 18 14 / 0.55);
+  --checker-a: #ecebe7;
+  --checker-b: #f7f6f3;
+  --elev-sm: 0 1px 2px rgb(30 25 15 / 0.08);
+  --elev-md: 0 4px 12px rgb(30 25 15 / 0.1);
+  --elev-lg: 0 12px 32px rgb(30 25 15 / 0.14);
+  --elev-overlay: 0 24px 64px rgb(30 25 15 / 0.22);
+}
+
+/* light theme: system preference when user has not chosen */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    color-scheme: light;
+    --bg: #f6f5f2;
+    --surface-1: #ffffff;
+    --surface-2: #efede8;
+    --surface-3: #e5e2db;
+    --border: #d8d4cb;
+    --border-strong: #b3ada1;
+    --text: #1b1a17;
+    --text-muted: #54514a;
+    --text-subtle: #67635b;
+    --accent: #b45309;
+    --accent-hover: #92400e;
+    --accent-fg: #ffffff;
+    --accent-soft: rgb(180 83 9 / 0.1);
+    --accent-line: rgb(180 83 9 / 0.4);
+    --success: #1f7a4a;
+    --danger: #b42318;
+    --info: #2457a6;
+    --success-soft: rgb(31 122 74 / 0.1);
+    --danger-soft: rgb(180 35 24 / 0.1);
+    --info-soft: rgb(36 87 166 / 0.1);
+    --scrim: rgb(20 18 14 / 0.55);
+    --checker-a: #ecebe7;
+    --checker-b: #f7f6f3;
+    --elev-sm: 0 1px 2px rgb(30 25 15 / 0.08);
+    --elev-md: 0 4px 12px rgb(30 25 15 / 0.1);
+    --elev-lg: 0 12px 32px rgb(30 25 15 / 0.14);
+    --elev-overlay: 0 24px 64px rgb(30 25 15 / 0.22);
+  }
+}
+
+/* Tailwind theme mapping (utilities: bg-surface-1, text-muted, border-border,
+   bg-accent, text-accent-fg, rounded-md, shadow-md, text-sm, font-mono, ...) */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-subtle: var(--text-subtle);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-success-soft: var(--success-soft);
+  --color-danger-soft: var(--danger-soft);
+  --color-info-soft: var(--info-soft);
+  --color-scrim: var(--scrim);
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, "Cascadia Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+  /* 4px spacing scale (p-1 = 4px, p-2 = 8px, ...) */
+  --spacing: 4px;
+
+  /* type scale */
+  --text-2xs: 11px;
+  --text-2xs--line-height: 16px;
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-sm: 13px;
+  --text-sm--line-height: 20px;
+  --text-base: 14px;
+  --text-base--line-height: 22px;
+  --text-md: 16px;
+  --text-md--line-height: 24px;
+  --text-lg: 18px;
+  --text-lg--line-height: 26px;
+  --text-xl: 22px;
+  --text-xl--line-height: 30px;
+  --text-2xl: 28px;
+  --text-2xl--line-height: 36px;
+
+  /* radius scale */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+
+  /* elevation (values per theme live in --elev-*) */
+  --shadow-sm: var(--elev-sm);
+  --shadow-md: var(--elev-md);
+  --shadow-lg: var(--elev-lg);
+  --shadow-overlay: var(--elev-overlay);
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* z-index utilities bound to the scale */
+@utility z-sticky { z-index: var(--z-sticky); }
+@utility z-dropdown { z-index: var(--z-dropdown); }
+@utility z-popover { z-index: var(--z-popover); }
+@utility z-overlay { z-index: var(--z-overlay); }
+@utility z-modal { z-index: var(--z-modal); }
+@utility z-toast { z-index: var(--z-toast); }
+
+/* motion utilities */
+@utility transition-ui {
+  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+  transition-duration: var(--dur-base);
+  transition-timing-function: var(--ease-out);
+}
+@utility checker {
+  background-color: var(--checker-a);
+  background-image: conic-gradient(var(--checker-b) 25%, transparent 0 50%, var(--checker-b) 0 75%, transparent 0);
+  background-size: 16px 16px;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 22px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--text);
+  }
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+  /* stats, counters, timings, sizes */
+  .num,
+  [data-num] {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+  * {
+    scrollbar-color: var(--border-strong) transparent;
+    scrollbar-width: thin;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

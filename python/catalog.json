@@ -1,0 +1,7097 @@
+{
+ "schema": 1,
+ "versions": {
+  "python": "3.12.10",
+  "numpy": "2.5.4",
+  "opencv": "4.14.0",
+  "numba": "0.68.0",
+  "augraphy": "8.2.6",
+  "albumentations": "2.0.8"
+ },
+ "phase_order": [
+  "ink",
+  "paper",
+  "post"
+ ],
+ "effects": [
+  {
+   "id": "augraphy.BadPhotoCopy",
+   "lib": "augraphy",
+   "name": "BadPhotoCopy",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.badphotocopy",
+   "doc": "Uses added noise to generate an effect of dirty copier.",
+   "params": [
+    {
+     "name": "noise_mask",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "noise_type",
+     "kind": "int",
+     "default": -1
+    },
+    {
+     "name": "noise_side",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "noise_iteration",
+     "kind": "range",
+     "default": [
+      1,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "noise_size",
+     "kind": "range",
+     "default": [
+      1,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "noise_value",
+     "kind": "range",
+     "default": [
+      32,
+      128
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "noise_sparsity",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.9
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "noise_concentration",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.7
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "blur_noise",
+     "kind": "int",
+     "default": -1
+    },
+    {
+     "name": "blur_noise_kernel",
+     "kind": "range",
+     "default": [
+      5,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "wave_pattern",
+     "kind": "int",
+     "default": -1
+    },
+    {
+     "name": "edge_effect",
+     "kind": "int",
+     "default": -1
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2319.1,
+   "changed": true
+  },
+  {
+   "id": "augraphy.BindingsAndFasteners",
+   "lib": "augraphy",
+   "name": "BindingsAndFasteners",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.bindingsandfasteners",
+   "doc": "Creates binding and fastener mark in the input image.",
+   "params": [
+    {
+     "name": "overlay_types",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "foreground",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "effect_type",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "width_range",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "height_range",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "angle_range",
+     "kind": "range",
+     "default": [
+      -30,
+      30
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "ntimes",
+     "kind": "range",
+     "default": [
+      2,
+      6
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "nscales",
+     "kind": "range",
+     "default": [
+      1.0,
+      1.5
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "edge",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "edge_offset",
+     "kind": "range",
+     "default": [
+      5,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "use_figshare_library",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2261.1,
+   "changed": true
+  },
+  {
+   "id": "augraphy.BleedThrough",
+   "lib": "augraphy",
+   "name": "BleedThrough",
+   "phase": "ink",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.bleedthrough",
+   "doc": "Emulates bleed through effect from the combination of ink bleed and",
+   "params": [
+    {
+     "name": "intensity_range",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.9
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "color_range",
+     "kind": "range",
+     "default": [
+      0,
+      224
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "ksize",
+     "kind": "range",
+     "default": [
+      17,
+      17
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "sigmaX",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "alpha",
+     "kind": "float",
+     "default": 0.2
+    },
+    {
+     "name": "offsets",
+     "kind": "range",
+     "default": [
+      20,
+      20
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2688.9,
+   "changed": true
+  },
+  {
+   "id": "augraphy.BookBinding",
+   "lib": "augraphy",
+   "name": "BookBinding",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.bookbinding",
+   "doc": "Creates a book binding effect by applying shadow and combining two bended images.",
+   "params": [
+    {
+     "name": "shadow_radius_range",
+     "kind": "range",
+     "default": [
+      30,
+      100
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "curve_range_right",
+     "kind": "range",
+     "default": [
+      50,
+      100
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "curve_range_left",
+     "kind": "range",
+     "default": [
+      200,
+      300
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "curve_ratio_right",
+     "kind": "range",
+     "default": [
+      0.05,
+      0.1
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "curve_ratio_left",
+     "kind": "range",
+     "default": [
+      0.5,
+      0.6
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "mirror_range",
+     "kind": "range",
+     "default": [
+      1.0,
+      1.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "binding_align",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "binding_pages",
+     "kind": "range",
+     "default": [
+      5,
+      10
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "curling_direction",
+     "kind": "int",
+     "default": -1
+    },
+    {
+     "name": "backdrop_color",
+     "kind": "json",
+     "default": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "enable_shadow",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "use_cache_images",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 4044.6,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Brightness",
+   "lib": "augraphy",
+   "name": "Brightness",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.brightness",
+   "doc": "Adjusts the brightness of the whole image by a chosen multiplier.",
+   "params": [
+    {
+     "name": "brightness_range",
+     "kind": "range",
+     "default": [
+      0.8,
+      1.4
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "min_brightness",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "min_brightness_value",
+     "kind": "range",
+     "default": [
+      20,
+      50
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2310.5,
+   "changed": true
+  },
+  {
+   "id": "augraphy.BrightnessTexturize",
+   "lib": "augraphy",
+   "name": "BrightnessTexturize",
+   "phase": "paper",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.brightnesstexturize",
+   "doc": "Creates a random noise in the brightness channel to emulate paper",
+   "params": [
+    {
+     "name": "texturize_range",
+     "kind": "range",
+     "default": [
+      0.8,
+      0.99
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "deviation",
+     "kind": "float",
+     "default": 0.08
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2466.8,
+   "changed": true
+  },
+  {
+   "id": "augraphy.ColorPaper",
+   "lib": "augraphy",
+   "name": "ColorPaper",
+   "phase": "paper",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.colorpaper",
+   "doc": "Change color of input paper based on user input hue and saturation.",
+   "params": [
+    {
+     "name": "hue_range",
+     "kind": "range",
+     "default": [
+      28,
+      45
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "saturation_range",
+     "kind": "range",
+     "default": [
+      10,
+      40
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2259.0,
+   "changed": true
+  },
+  {
+   "id": "augraphy.ColorShift",
+   "lib": "augraphy",
+   "name": "ColorShift",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.colorshift",
+   "doc": "Shifts each BGR color channel by certain offsets to create a shifted color effect.",
+   "params": [
+    {
+     "name": "color_shift_offset_x_range",
+     "kind": "range",
+     "default": [
+      3,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "color_shift_offset_y_range",
+     "kind": "range",
+     "default": [
+      3,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "color_shift_iterations",
+     "kind": "range",
+     "default": [
+      2,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "color_shift_brightness_range",
+     "kind": "range",
+     "default": [
+      0.9,
+      1.1
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "color_shift_gaussian_kernel_range",
+     "kind": "range",
+     "default": [
+      3,
+      3
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2460.1,
+   "changed": true
+  },
+  {
+   "id": "augraphy.DelaunayTessellation",
+   "lib": "augraphy",
+   "name": "DelaunayTessellation",
+   "phase": "paper",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.delaunay",
+   "doc": "The Delaunay Tessellation is a method of dividing a geometric space",
+   "params": [
+    {
+     "name": "n_points_range",
+     "kind": "range",
+     "default": [
+      500,
+      800
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "n_horizontal_points_range",
+     "kind": "range",
+     "default": [
+      500,
+      800
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "n_vertical_points_range",
+     "kind": "range",
+     "default": [
+      500,
+      800
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "noise_type",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "color_list",
+     "kind": "str",
+     "default": "default"
+    },
+    {
+     "name": "color_list_alternate",
+     "kind": "str",
+     "default": "default"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3052.2,
+   "changed": true
+  },
+  {
+   "id": "augraphy.DepthSimulatedBlur",
+   "lib": "augraphy",
+   "name": "DepthSimulatedBlur",
+   "phase": "post",
+   "phase_source": "fallback",
+   "module": "augraphy.augmentations.depthsimulatedblur",
+   "doc": "Creates a depth-simulated blur effect from a camera by blurring a small elliptical region of image.",
+   "params": [
+    {
+     "name": "blur_center",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "blur_major_axes_length_range",
+     "kind": "range",
+     "default": [
+      120,
+      200
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "blur_minor_axes_length_range",
+     "kind": "range",
+     "default": [
+      120,
+      200
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "blur_iteration_range",
+     "kind": "range",
+     "default": [
+      8,
+      10
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 6893.2,
+   "changed": true
+  },
+  {
+   "id": "augraphy.DirtyDrum",
+   "lib": "augraphy",
+   "name": "DirtyDrum",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.dirtydrum",
+   "doc": "Emulates dirty drum effect by creating stripes of vertical and",
+   "params": [
+    {
+     "name": "line_width_range",
+     "kind": "range",
+     "default": [
+      1,
+      4
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "line_concentration",
+     "kind": "float",
+     "default": 0.1
+    },
+    {
+     "name": "direction",
+     "kind": "int",
+     "default": -1
+    },
+    {
+     "name": "noise_intensity",
+     "kind": "float",
+     "default": 0.5
+    },
+    {
+     "name": "noise_value",
+     "kind": "range",
+     "default": [
+      0,
+      30
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "ksize",
+     "kind": "range",
+     "default": [
+      3,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "sigmaX",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2051.7,
+   "changed": true
+  },
+  {
+   "id": "augraphy.DirtyRollers",
+   "lib": "augraphy",
+   "name": "DirtyRollers",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.dirtyrollers",
+   "doc": "Emulates an effect created by certain document scanners.",
+   "params": [
+    {
+     "name": "line_width_range",
+     "kind": "range",
+     "default": [
+      8,
+      12
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "scanline_type",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2591.2,
+   "changed": true
+  },
+  {
+   "id": "augraphy.DirtyScreen",
+   "lib": "augraphy",
+   "name": "DirtyScreen",
+   "phase": "post",
+   "phase_source": "fallback",
+   "module": "augraphy.augmentations.dirtyscreen",
+   "doc": "Creates a dirty screen effect by applying blobs of different size in the entire image.",
+   "params": [
+    {
+     "name": "n_clusters",
+     "kind": "range",
+     "default": [
+      50,
+      100
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "n_samples",
+     "kind": "range",
+     "default": [
+      2,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "std_range",
+     "kind": "range",
+     "default": [
+      1,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "value_range",
+     "kind": "range",
+     "default": [
+      150,
+      250
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2270.1,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Dithering",
+   "lib": "augraphy",
+   "name": "Dithering",
+   "phase": "ink",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.dithering",
+   "doc": "Applies Ordered or Floyd Steinberg dithering to the input image.",
+   "params": [
+    {
+     "name": "dither",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "order",
+     "kind": "range",
+     "default": [
+      2,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2459.0,
+   "changed": true
+  },
+  {
+   "id": "augraphy.DotMatrix",
+   "lib": "augraphy",
+   "name": "DotMatrix",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.dotmatrix",
+   "doc": "Creates dot matrix effect by drawing dots of mean color in the detected contours.",
+   "params": [
+    {
+     "name": "dot_matrix_shape",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "dot_matrix_dot_width_range",
+     "kind": "range",
+     "default": [
+      3,
+      19
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dot_matrix_dot_height_range",
+     "kind": "range",
+     "default": [
+      3,
+      19
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dot_matrix_min_width_range",
+     "kind": "range",
+     "default": [
+      1,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dot_matrix_max_width_range",
+     "kind": "range",
+     "default": [
+      150,
+      200
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dot_matrix_min_height_range",
+     "kind": "range",
+     "default": [
+      1,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dot_matrix_max_height_range",
+     "kind": "range",
+     "default": [
+      150,
+      200
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dot_matrix_min_area_range",
+     "kind": "range",
+     "default": [
+      10,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dot_matrix_max_area_range",
+     "kind": "range",
+     "default": [
+      2000,
+      5000
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dot_matrix_median_kernel_value_range",
+     "kind": "range",
+     "default": [
+      128,
+      255
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dot_matrix_gaussian_kernel_value_range",
+     "kind": "range",
+     "default": [
+      1,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dot_matrix_rotate_value_range",
+     "kind": "range",
+     "default": [
+      0,
+      360
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2872.0,
+   "changed": true
+  },
+  {
+   "id": "augraphy.DoubleExposure",
+   "lib": "augraphy",
+   "name": "DoubleExposure",
+   "phase": "post",
+   "phase_source": "fallback",
+   "module": "augraphy.augmentations.doubleexposure",
+   "doc": "Emulates double exposure effect when taking picture with phone camera.",
+   "params": [
+    {
+     "name": "gaussian_kernel_range",
+     "kind": "range",
+     "default": [
+      9,
+      12
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "offset_direction",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "offset_range",
+     "kind": "range",
+     "default": [
+      18,
+      25
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2786.5,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Faxify",
+   "lib": "augraphy",
+   "name": "Faxify",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.faxify",
+   "doc": "Emulates faxify effect in the image.",
+   "params": [
+    {
+     "name": "scale_range",
+     "kind": "range",
+     "default": [
+      1.0,
+      1.25
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "monochrome",
+     "kind": "int",
+     "default": -1
+    },
+    {
+     "name": "monochrome_method",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "monochrome_arguments",
+     "kind": "json",
+     "default": {}
+    },
+    {
+     "name": "halftone",
+     "kind": "int",
+     "default": -1
+    },
+    {
+     "name": "invert",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "half_kernel_size",
+     "kind": "range",
+     "default": [
+      1,
+      1
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "angle",
+     "kind": "range",
+     "default": [
+      0,
+      360
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "sigma",
+     "kind": "range",
+     "default": [
+      1,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3280.6,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Folding",
+   "lib": "augraphy",
+   "name": "Folding",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.folding",
+   "doc": "Emulates folding effect from perspective transformation",
+   "params": [
+    {
+     "name": "fold_x",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "fold_deviation",
+     "kind": "range",
+     "default": [
+      0,
+      0
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "fold_count",
+     "kind": "int",
+     "default": 2
+    },
+    {
+     "name": "fold_noise",
+     "kind": "float",
+     "default": 0.01
+    },
+    {
+     "name": "fold_angle_range",
+     "kind": "range",
+     "default": [
+      0,
+      0
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "gradient_width",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "gradient_height",
+     "kind": "range",
+     "default": [
+      0.01,
+      0.02
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "backdrop_color",
+     "kind": "json",
+     "default": [
+      0,
+      0,
+      0
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3543.6,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Gamma",
+   "lib": "augraphy",
+   "name": "Gamma",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.gamma",
+   "doc": "Adjusts the gamma of the whole image by a chosen multiplier.",
+   "params": [
+    {
+     "name": "gamma_range",
+     "kind": "range",
+     "default": [
+      0.5,
+      1.5
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2815.8,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Geometric",
+   "lib": "augraphy",
+   "name": "Geometric",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.geometric",
+   "doc": "Applies basic geometric transformations such as resizing, flips and rotation.",
+   "params": [
+    {
+     "name": "scale",
+     "kind": "range",
+     "default": [
+      1,
+      1
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "translation",
+     "kind": "range",
+     "default": [
+      0,
+      0
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "fliplr",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "flipud",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "crop",
+     "kind": "json",
+     "default": []
+    },
+    {
+     "name": "rotate_range",
+     "kind": "range",
+     "default": [
+      0,
+      0
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "padding",
+     "kind": "json",
+     "default": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "padding_type",
+     "kind": "str",
+     "default": "fill"
+    },
+    {
+     "name": "padding_value",
+     "kind": "json",
+     "default": [
+      255,
+      255,
+      255
+     ]
+    },
+    {
+     "name": "randomize",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2724.1,
+   "changed": false
+  },
+  {
+   "id": "augraphy.GlitchEffect",
+   "lib": "augraphy",
+   "name": "GlitchEffect",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.glitcheffect",
+   "doc": "Create glitch effect by applying ColorShift and shifts patches of image horizontally or vertically.",
+   "params": [
+    {
+     "name": "glitch_direction",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "glitch_number_range",
+     "kind": "range",
+     "default": [
+      8,
+      16
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "glitch_size_range",
+     "kind": "range",
+     "default": [
+      5,
+      50
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "glitch_offset_range",
+     "kind": "range",
+     "default": [
+      10,
+      50
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2923.3,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Hollow",
+   "lib": "augraphy",
+   "name": "Hollow",
+   "phase": "ink",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.hollow",
+   "doc": "Creates  hollow effect by replacing detected contours with edges.",
+   "params": [
+    {
+     "name": "hollow_median_kernel_value_range",
+     "kind": "range",
+     "default": [
+      71,
+      101
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "hollow_min_width_range",
+     "kind": "range",
+     "default": [
+      1,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "hollow_max_width_range",
+     "kind": "range",
+     "default": [
+      150,
+      200
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "hollow_min_height_range",
+     "kind": "range",
+     "default": [
+      1,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "hollow_max_height_range",
+     "kind": "range",
+     "default": [
+      150,
+      200
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "hollow_min_area_range",
+     "kind": "range",
+     "default": [
+      10,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "hollow_max_area_range",
+     "kind": "range",
+     "default": [
+      2000,
+      5000
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "hollow_dilation_kernel_size_range",
+     "kind": "range",
+     "default": [
+      1,
+      2
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3576.8,
+   "changed": true
+  },
+  {
+   "id": "augraphy.InkBleed",
+   "lib": "augraphy",
+   "name": "InkBleed",
+   "phase": "ink",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.inkbleed",
+   "doc": "Uses Sobel edge detection to create a mask of all edges, then applies",
+   "params": [
+    {
+     "name": "intensity_range",
+     "kind": "range",
+     "default": [
+      0.4,
+      0.7
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "kernel_size",
+     "kind": "range",
+     "default": [
+      5,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "severity",
+     "kind": "range",
+     "default": [
+      0.3,
+      0.4
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2898.5,
+   "changed": true
+  },
+  {
+   "id": "augraphy.InkColorSwap",
+   "lib": "augraphy",
+   "name": "InkColorSwap",
+   "phase": "ink",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.inkcolorswap",
+   "doc": "Swap color of ink in the image based on detected ink contours.",
+   "params": [
+    {
+     "name": "ink_swap_color",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "ink_swap_sequence_number_range",
+     "kind": "range",
+     "default": [
+      5,
+      10
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "ink_swap_min_width_range",
+     "kind": "range",
+     "default": [
+      2,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "ink_swap_max_width_range",
+     "kind": "range",
+     "default": [
+      100,
+      120
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "ink_swap_min_height_range",
+     "kind": "range",
+     "default": [
+      2,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "ink_swap_max_height_range",
+     "kind": "range",
+     "default": [
+      100,
+      120
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "ink_swap_min_area_range",
+     "kind": "range",
+     "default": [
+      10,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "ink_swap_max_area_range",
+     "kind": "range",
+     "default": [
+      400,
+      500
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2555.4,
+   "changed": true
+  },
+  {
+   "id": "augraphy.InkMottling",
+   "lib": "augraphy",
+   "name": "InkMottling",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.inkmottling",
+   "doc": "Create a random pattern effect in the detected ink by blending a layer of random Gaussian noise.",
+   "params": [
+    {
+     "name": "ink_mottling_alpha_range",
+     "kind": "range",
+     "default": [
+      0.2,
+      0.3
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "ink_mottling_noise_scale_range",
+     "kind": "range",
+     "default": [
+      2,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "ink_mottling_gaussian_kernel_range",
+     "kind": "range",
+     "default": [
+      3,
+      5
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2483.9,
+   "changed": true
+  },
+  {
+   "id": "augraphy.InkShifter",
+   "lib": "augraphy",
+   "name": "InkShifter",
+   "phase": "ink",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.inkshifter",
+   "doc": "The base class which all pipeline augmentations inherit from.",
+   "params": [
+    {
+     "name": "text_shift_scale_range",
+     "kind": "range",
+     "default": [
+      18,
+      27
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "text_shift_factor_range",
+     "kind": "range",
+     "default": [
+      1,
+      4
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "text_fade_range",
+     "kind": "range",
+     "default": [
+      0,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "blur_kernel_size",
+     "kind": "range",
+     "default": [
+      5,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "blur_sigma",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "noise_type",
+     "kind": "str",
+     "default": "random"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3547.6,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Jpeg",
+   "lib": "augraphy",
+   "name": "Jpeg",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.jpeg",
+   "doc": "Uses JPEG encoding to create compression artifacts in the image.",
+   "params": [
+    {
+     "name": "quality_range",
+     "kind": "range",
+     "default": [
+      25,
+      95
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2529.5,
+   "changed": true
+  },
+  {
+   "id": "augraphy.LCDScreenPattern",
+   "lib": "augraphy",
+   "name": "LCDScreenPattern",
+   "phase": "post",
+   "phase_source": "fallback",
+   "module": "augraphy.augmentations.lcdscreenpattern",
+   "doc": "Creates a LCD Screen Pattern effect by overlaying different line patterns into image.",
+   "params": [
+    {
+     "name": "pattern_type",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "pattern_value_range",
+     "kind": "range",
+     "default": [
+      0,
+      16
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "pattern_skip_distance_range",
+     "kind": "range",
+     "default": [
+      3,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "pattern_overlay_method",
+     "kind": "str",
+     "default": "darken"
+    },
+    {
+     "name": "pattern_overlay_alpha",
+     "kind": "float",
+     "default": 0.3
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2598.7,
+   "changed": true
+  },
+  {
+   "id": "augraphy.LensFlare",
+   "lib": "augraphy",
+   "name": "LensFlare",
+   "phase": "post",
+   "phase_source": "fallback",
+   "module": "augraphy.augmentations.lensflare",
+   "doc": "Creates a lens flare effect by drawing a bright spot light with darker background.",
+   "params": [
+    {
+     "name": "lens_flare_location",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "lens_flare_color",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "lens_flare_size",
+     "kind": "range",
+     "default": [
+      0.5,
+      5
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 56542.3,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Letterpress",
+   "lib": "augraphy",
+   "name": "Letterpress",
+   "phase": "ink",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.letterpress",
+   "doc": "Produces regions of ink mimicking the effect of ink pressed unevenly onto paper.",
+   "params": [
+    {
+     "name": "n_samples",
+     "kind": "range",
+     "default": [
+      300,
+      800
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "n_clusters",
+     "kind": "range",
+     "default": [
+      300,
+      800
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "std_range",
+     "kind": "range",
+     "default": [
+      1500,
+      5000
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "value_range",
+     "kind": "range",
+     "default": [
+      200,
+      255
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "value_threshold_range",
+     "kind": "range",
+     "default": [
+      128,
+      128
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "blur",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 4482.1,
+   "changed": true
+  },
+  {
+   "id": "augraphy.LightingGradient",
+   "lib": "augraphy",
+   "name": "LightingGradient",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.lightinggradient",
+   "doc": "Generates a decayed light mask generated by light strip given its",
+   "params": [
+    {
+     "name": "light_position",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "direction",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "max_brightness",
+     "kind": "int",
+     "default": 255
+    },
+    {
+     "name": "min_brightness",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "mode",
+     "kind": "str",
+     "default": "gaussian"
+    },
+    {
+     "name": "linear_decay_rate",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "transparency",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3146.2,
+   "changed": true
+  },
+  {
+   "id": "augraphy.LinesDegradation",
+   "lib": "augraphy",
+   "name": "LinesDegradation",
+   "phase": "ink",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.linesdegradation",
+   "doc": "Degrades lines by replacing lines formed by image gradients with a different value.",
+   "params": [
+    {
+     "name": "line_roi",
+     "kind": "json",
+     "default": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+     ]
+    },
+    {
+     "name": "line_gradient_range",
+     "kind": "range",
+     "default": [
+      32,
+      255
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "line_gradient_direction",
+     "kind": "range",
+     "default": [
+      0,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "line_split_probability",
+     "kind": "range",
+     "default": [
+      0.2,
+      0.4
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "line_replacement_value",
+     "kind": "range",
+     "default": [
+      250,
+      255
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "line_min_length",
+     "kind": "range",
+     "default": [
+      30,
+      40
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "line_long_to_short_ratio",
+     "kind": "range",
+     "default": [
+      5,
+      7
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "line_replacement_probability",
+     "kind": "range",
+     "default": [
+      0.4,
+      0.5
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "line_replacement_thickness",
+     "kind": "range",
+     "default": [
+      1,
+      3
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2990.5,
+   "changed": true
+  },
+  {
+   "id": "augraphy.LowInkPeriodicLines",
+   "lib": "augraphy",
+   "name": "LowInkPeriodicLines",
+   "phase": "ink",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.lowinkperiodiclines",
+   "doc": "Creates a set of lines that repeat in a periodic fashion throughout the",
+   "params": [
+    {
+     "name": "count_range",
+     "kind": "range",
+     "default": [
+      2,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "period_range",
+     "kind": "range",
+     "default": [
+      10,
+      30
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "use_consistent_lines",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "noise_probability",
+     "kind": "float",
+     "default": 0.1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3253.3,
+   "changed": true
+  },
+  {
+   "id": "augraphy.LowInkRandomLines",
+   "lib": "augraphy",
+   "name": "LowInkRandomLines",
+   "phase": "ink",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.lowinkrandomlines",
+   "doc": "Adds low ink lines randomly throughout the image.",
+   "params": [
+    {
+     "name": "count_range",
+     "kind": "range",
+     "default": [
+      5,
+      10
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "use_consistent_lines",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "noise_probability",
+     "kind": "float",
+     "default": 0.1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2721.1,
+   "changed": true
+  },
+  {
+   "id": "augraphy.LowLightNoise",
+   "lib": "augraphy",
+   "name": "LowLightNoise",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.lowlightnoise",
+   "doc": "Simulate low-light conditions in an image by applying various noise effects.",
+   "params": [
+    {
+     "name": "num_photons_range",
+     "kind": "range",
+     "default": [
+      50,
+      100
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "alpha_range",
+     "kind": "range",
+     "default": [
+      0.7,
+      1.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "beta_range",
+     "kind": "range",
+     "default": [
+      10,
+      30
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "gamma_range",
+     "kind": "range",
+     "default": [
+      1,
+      1.8
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "bias_range",
+     "kind": "range",
+     "default": [
+      20,
+      40
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "dark_current_value",
+     "kind": "float",
+     "default": 1.0
+    },
+    {
+     "name": "exposure_time",
+     "kind": "float",
+     "default": 0.2
+    },
+    {
+     "name": "gain",
+     "kind": "float",
+     "default": 0.1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3610.2,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Markup",
+   "lib": "augraphy",
+   "name": "Markup",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.markup",
+   "doc": "Uses contours detection to detect text lines and add a smooth text strikethrough, highlight or underline effect.",
+   "params": [
+    {
+     "name": "num_lines_range",
+     "kind": "range",
+     "default": [
+      2,
+      7
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "markup_length_range",
+     "kind": "range",
+     "default": [
+      0.5,
+      1
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "markup_thickness_range",
+     "kind": "range",
+     "default": [
+      1,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "markup_type",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "markup_ink",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "markup_color",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "large_word_mode",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "single_word_mode",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "repetitions",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3891.1,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Moire",
+   "lib": "augraphy",
+   "name": "Moire",
+   "phase": "post",
+   "phase_source": "fallback",
+   "module": "augraphy.augmentations.moire",
+   "doc": "Creates a moire pattern effect in the image by blending the moire pattern using OverlayBuilder.",
+   "params": [
+    {
+     "name": "moire_density",
+     "kind": "range",
+     "default": [
+      15,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "moire_blend_method",
+     "kind": "str",
+     "default": "normal"
+    },
+    {
+     "name": "moire_blend_alpha",
+     "kind": "float",
+     "default": 0.1
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3830.7,
+   "changed": true
+  },
+  {
+   "id": "augraphy.NoiseTexturize",
+   "lib": "augraphy",
+   "name": "NoiseTexturize",
+   "phase": "paper",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.noisetexturize",
+   "doc": "Creates a random noise pattern to emulate paper textures.",
+   "params": [
+    {
+     "name": "sigma_range",
+     "kind": "range",
+     "default": [
+      3,
+      10
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "turbulence_range",
+     "kind": "range",
+     "default": [
+      2,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "texture_width_range",
+     "kind": "range",
+     "default": [
+      100,
+      500
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "texture_height_range",
+     "kind": "range",
+     "default": [
+      100,
+      500
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3478.5,
+   "changed": true
+  },
+  {
+   "id": "augraphy.NoisyLines",
+   "lib": "augraphy",
+   "name": "NoisyLines",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.noisylines",
+   "doc": "Create noisy lines by drawing horizontal or vertical lines in a fixed intervals.",
+   "params": [
+    {
+     "name": "noisy_lines_direction",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "noisy_lines_location",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "noisy_lines_number_range",
+     "kind": "range",
+     "default": [
+      5,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "noisy_lines_color",
+     "kind": "json",
+     "default": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "noisy_lines_thickness_range",
+     "kind": "range",
+     "default": [
+      1,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "noisy_lines_random_noise_intensity_range",
+     "kind": "range",
+     "default": [
+      0.01,
+      0.1
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "noisy_lines_length_interval_range",
+     "kind": "range",
+     "default": [
+      0,
+      100
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "noisy_lines_gaussian_kernel_value_range",
+     "kind": "range",
+     "default": [
+      3,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "noisy_lines_overlay_method",
+     "kind": "str",
+     "default": "ink_to_paper"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3032.3,
+   "changed": true
+  },
+  {
+   "id": "augraphy.PageBorder",
+   "lib": "augraphy",
+   "name": "PageBorder",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.pageborder",
+   "doc": "Add page border effect by stacking images multiple times.",
+   "params": [
+    {
+     "name": "page_border_width_height",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "page_border_color",
+     "kind": "json",
+     "default": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "page_border_background_color",
+     "kind": "json",
+     "default": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "page_border_use_cache_images",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "page_border_trim_sides",
+     "kind": "json",
+     "default": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "page_numbers",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "page_rotate_angle_in_order",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "page_rotation_angle_range",
+     "kind": "range",
+     "default": [
+      -3,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "curve_frequency",
+     "kind": "range",
+     "default": [
+      0,
+      1
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "curve_height",
+     "kind": "range",
+     "default": [
+      2,
+      4
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "curve_length_one_side",
+     "kind": "range",
+     "default": [
+      50,
+      100
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "same_page_border",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2998.5,
+   "changed": true
+  },
+  {
+   "id": "augraphy.PatternGenerator",
+   "lib": "augraphy",
+   "name": "PatternGenerator",
+   "phase": "paper",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.quasicrystal",
+   "doc": "In this implementation we take a geometric plane and every point in the plane is shaded according",
+   "params": [
+    {
+     "name": "imgx",
+     "kind": "int",
+     "default": 512
+    },
+    {
+     "name": "imgy",
+     "kind": "int",
+     "default": 512
+    },
+    {
+     "name": "n_rotation_range",
+     "kind": "range",
+     "default": [
+      10,
+      15
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "color",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "alpha_range",
+     "kind": "range",
+     "default": [
+      0.25,
+      0.5
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 7165.0,
+   "changed": true
+  },
+  {
+   "id": "augraphy.ReflectedLight",
+   "lib": "augraphy",
+   "name": "ReflectedLight",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.reflectedlight",
+   "doc": "Creates reflected light effect by drawing ellipses of different brightness.",
+   "params": [
+    {
+     "name": "reflected_light_smoothness",
+     "kind": "float",
+     "default": 0.8
+    },
+    {
+     "name": "reflected_light_internal_radius_range",
+     "kind": "range",
+     "default": [
+      0.0,
+      0.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "reflected_light_external_radius_range",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.8
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "reflected_light_minor_major_ratio_range",
+     "kind": "range",
+     "default": [
+      0.9,
+      1.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "reflected_light_color",
+     "kind": "json",
+     "default": [
+      255,
+      255,
+      255
+     ]
+    },
+    {
+     "name": "reflected_light_internal_max_brightness_range",
+     "kind": "range",
+     "default": [
+      0.9,
+      1.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "reflected_light_external_max_brightness_range",
+     "kind": "range",
+     "default": [
+      0.75,
+      0.9
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "reflected_light_location",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "reflected_light_ellipse_angle_range",
+     "kind": "range",
+     "default": [
+      0,
+      360
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "reflected_light_gaussian_kernel_size_range",
+     "kind": "range",
+     "default": [
+      5,
+      310
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3499.0,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Rescale",
+   "lib": "augraphy",
+   "name": "Rescale",
+   "phase": "post",
+   "phase_source": "fallback",
+   "module": "augraphy.augmentations.rescale",
+   "doc": "Rescales image to the desired DPI for augmentation purpose.",
+   "params": [
+    {
+     "name": "target_dpi",
+     "kind": "int",
+     "default": 300
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3075.6,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Scribbles",
+   "lib": "augraphy",
+   "name": "Scribbles",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.scribbles",
+   "doc": "Applies scribbles to image.",
+   "params": [
+    {
+     "name": "scribbles_type",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "scribbles_ink",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "scribbles_location",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "scribbles_size_range",
+     "kind": "range",
+     "default": [
+      400,
+      600
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "scribbles_count_range",
+     "kind": "range",
+     "default": [
+      1,
+      6
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "scribbles_thickness_range",
+     "kind": "range",
+     "default": [
+      1,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "scribbles_brightness_change",
+     "kind": "json",
+     "default": [
+      32,
+      64,
+      128
+     ]
+    },
+    {
+     "name": "scribbles_skeletonize",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "scribbles_skeletonize_iterations",
+     "kind": "range",
+     "default": [
+      2,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "scribbles_color",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "scribbles_text",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "scribbles_text_font",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "scribbles_text_rotate_range",
+     "kind": "range",
+     "default": [
+      0,
+      360
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "scribbles_lines_stroke_count_range",
+     "kind": "range",
+     "default": [
+      1,
+      6
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3367.3,
+   "changed": true
+  },
+  {
+   "id": "augraphy.SectionShift",
+   "lib": "augraphy",
+   "name": "SectionShift",
+   "phase": "post",
+   "phase_source": "fallback",
+   "module": "augraphy.augmentations.sectionshift",
+   "doc": "Shift single or multiple sections of image in horizontal, vertical or both directions to create an effect of shifted image sections.",
+   "params": [
+    {
+     "name": "section_shift_number_range",
+     "kind": "range",
+     "default": [
+      3,
+      5
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "section_shift_locations",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "section_shift_x_range",
+     "kind": "range",
+     "default": [
+      -10,
+      10
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "section_shift_y_range",
+     "kind": "range",
+     "default": [
+      -10,
+      10
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "section_shift_fill_value",
+     "kind": "int",
+     "default": -1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3040.9,
+   "changed": true
+  },
+  {
+   "id": "augraphy.ShadowCast",
+   "lib": "augraphy",
+   "name": "ShadowCast",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.shadowcast",
+   "doc": "Emulates shadow effect on the surface of the paper.",
+   "params": [
+    {
+     "name": "shadow_side",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "shadow_vertices_range",
+     "kind": "range",
+     "default": [
+      1,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "shadow_width_range",
+     "kind": "range",
+     "default": [
+      0.3,
+      0.8
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "shadow_height_range",
+     "kind": "range",
+     "default": [
+      0.3,
+      0.8
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "shadow_color",
+     "kind": "json",
+     "default": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "shadow_opacity_range",
+     "kind": "range",
+     "default": [
+      0.2,
+      0.9
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "shadow_iterations_range",
+     "kind": "range",
+     "default": [
+      1,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "shadow_blur_kernel_range",
+     "kind": "range",
+     "default": [
+      101,
+      301
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3633.5,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Squish",
+   "lib": "augraphy",
+   "name": "Squish",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.squish",
+   "doc": "Creates a squish effect by removing a fixed horizontal or vertical section of the image.",
+   "params": [
+    {
+     "name": "squish_direction",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "squish_location",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "squish_number_range",
+     "kind": "range",
+     "default": [
+      5,
+      10
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "squish_distance_range",
+     "kind": "range",
+     "default": [
+      5,
+      7
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "squish_line",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "squish_line_thickness_range",
+     "kind": "range",
+     "default": [
+      1,
+      1
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3205.2,
+   "changed": true
+  },
+  {
+   "id": "augraphy.Stains",
+   "lib": "augraphy",
+   "name": "Stains",
+   "phase": "post",
+   "phase_source": "fallback",
+   "module": "augraphy.augmentations.stains",
+   "doc": "Creates a stains texture and the stains texture is blended into the input image by using OverlayBuilder.",
+   "params": [
+    {
+     "name": "stains_type",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "stains_blend_method",
+     "kind": "str",
+     "default": "darken"
+    },
+    {
+     "name": "stains_blend_alpha",
+     "kind": "float",
+     "default": 0.5
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3998.3,
+   "changed": true
+  },
+  {
+   "id": "augraphy.SubtleNoise",
+   "lib": "augraphy",
+   "name": "SubtleNoise",
+   "phase": "post",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.subtlenoise",
+   "doc": "Emulates the imperfections in scanning solid colors due to subtle",
+   "params": [
+    {
+     "name": "subtle_range",
+     "kind": "int",
+     "default": 10
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3511.6,
+   "changed": true
+  },
+  {
+   "id": "augraphy.VoronoiTessellation",
+   "lib": "augraphy",
+   "name": "VoronoiTessellation",
+   "phase": "paper",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.voronoi",
+   "doc": "This script generates a Voronoi Tessellation based on a set of random points in a plane. The tessellation",
+   "params": [
+    {
+     "name": "mult_range",
+     "kind": "range",
+     "default": [
+      50,
+      80
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "seed",
+     "kind": "int",
+     "default": 19829813472
+    },
+    {
+     "name": "num_cells_range",
+     "kind": "range",
+     "default": [
+      500,
+      1000
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "noise_type",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "background_value",
+     "kind": "range",
+     "default": [
+      200,
+      255
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "numba_jit",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 5065.9,
+   "changed": true
+  },
+  {
+   "id": "augraphy.WaterMark",
+   "lib": "augraphy",
+   "name": "WaterMark",
+   "phase": "paper",
+   "phase_source": "default_pipeline",
+   "module": "augraphy.augmentations.watermark",
+   "doc": "Add watermark effect into input image.",
+   "params": [
+    {
+     "name": "watermark_word",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "watermark_font_size",
+     "kind": "range",
+     "default": [
+      10,
+      15
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "watermark_font_thickness",
+     "kind": "range",
+     "default": [
+      20,
+      25
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "watermark_font_type",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "watermark_rotation",
+     "kind": "range",
+     "default": [
+      0,
+      360
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "watermark_location",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "watermark_color",
+     "kind": "str",
+     "default": "random"
+    },
+    {
+     "name": "watermark_method",
+     "kind": "str",
+     "default": "darken"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3503.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.AdditiveNoise",
+   "lib": "albumentations",
+   "name": "AdditiveNoise",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply random noise to image channels using various noise distributions.",
+   "params": [
+    {
+     "name": "noise_type",
+     "kind": "choice",
+     "default": "uniform",
+     "choices": [
+      "uniform",
+      "gaussian",
+      "laplace",
+      "beta"
+     ]
+    },
+    {
+     "name": "spatial_mode",
+     "kind": "choice",
+     "default": "constant",
+     "choices": [
+      "constant",
+      "per_pixel",
+      "shared"
+     ]
+    },
+    {
+     "name": "noise_params",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "approximation",
+     "kind": "float",
+     "default": 1.0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 62.5,
+   "changed": true
+  },
+  {
+   "id": "albumentations.AdvancedBlur",
+   "lib": "albumentations",
+   "name": "AdvancedBlur",
+   "category": "pixel",
+   "module": "albumentations.augmentations.blur.transforms",
+   "doc": "Applies a Generalized Gaussian blur to the input image with randomized parameters for advanced data augmentation.",
+   "params": [
+    {
+     "name": "blur_limit",
+     "kind": "range",
+     "default": [
+      3,
+      7
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "sigma_x_limit",
+     "kind": "range",
+     "default": [
+      0.2,
+      1.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "sigma_y_limit",
+     "kind": "range",
+     "default": [
+      0.2,
+      1.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "rotate_limit",
+     "kind": "range",
+     "default": [
+      -90,
+      90
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "beta_limit",
+     "kind": "range",
+     "default": [
+      0.5,
+      8.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "noise_limit",
+     "kind": "range",
+     "default": [
+      0.9,
+      1.1
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 18.9,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Affine",
+   "lib": "albumentations",
+   "name": "Affine",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.transforms",
+   "doc": "Augmentation to apply affine transformations to images.",
+   "params": [
+    {
+     "name": "scale",
+     "kind": "range",
+     "default": [
+      1.0,
+      1.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "translate_percent",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "translate_px",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "rotate",
+     "kind": "float",
+     "default": 0.0
+    },
+    {
+     "name": "shear",
+     "kind": "range",
+     "default": [
+      0.0,
+      0.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fit_output",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "keep_ratio",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "rotate_method",
+     "kind": "choice",
+     "default": "largest_box",
+     "choices": [
+      "largest_box",
+      "ellipse"
+     ]
+    },
+    {
+     "name": "balanced_scale",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 22.9,
+   "changed": false
+  },
+  {
+   "id": "albumentations.AutoContrast",
+   "lib": "albumentations",
+   "name": "AutoContrast",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Automatically adjust image contrast by stretching the intensity range.",
+   "params": [
+    {
+     "name": "cutoff",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "ignore",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "method",
+     "kind": "choice",
+     "default": "cdf",
+     "choices": [
+      "cdf",
+      "pil"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 14.0,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Blur",
+   "lib": "albumentations",
+   "name": "Blur",
+   "category": "pixel",
+   "module": "albumentations.augmentations.blur.transforms",
+   "doc": "Apply uniform box blur to the input image using a randomly sized square kernel.",
+   "params": [
+    {
+     "name": "blur_limit",
+     "kind": "range",
+     "default": [
+      3,
+      7
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 23.2,
+   "changed": true
+  },
+  {
+   "id": "albumentations.CLAHE",
+   "lib": "albumentations",
+   "name": "CLAHE",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply Contrast Limited Adaptive Histogram Equalization (CLAHE) to the input image.",
+   "params": [
+    {
+     "name": "clip_limit",
+     "kind": "float",
+     "default": 4.0
+    },
+    {
+     "name": "tile_grid_size",
+     "kind": "range",
+     "default": [
+      8,
+      8
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 19.1,
+   "changed": true
+  },
+  {
+   "id": "albumentations.CenterCrop",
+   "lib": "albumentations",
+   "name": "CenterCrop",
+   "category": "spatial",
+   "module": "albumentations.augmentations.crops.transforms",
+   "doc": "Crop the central part of the input.",
+   "params": [
+    {
+     "name": "height",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "width",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "pad_if_needed",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "pad_position",
+     "kind": "choice",
+     "default": "center",
+     "choices": [
+      "center",
+      "top_left",
+      "top_right",
+      "bottom_left",
+      "bottom_right",
+      "random"
+     ]
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "float",
+     "default": 0.0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "float",
+     "default": 0.0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2.3,
+   "changed": true,
+   "fix_args": {
+    "height": 512,
+    "width": 512
+   }
+  },
+  {
+   "id": "albumentations.ChannelDropout",
+   "lib": "albumentations",
+   "name": "ChannelDropout",
+   "category": "pixel",
+   "module": "albumentations.augmentations.dropout.channel_dropout",
+   "doc": "Randomly drop channels in the input image.",
+   "params": [
+    {
+     "name": "channel_drop_range",
+     "kind": "range",
+     "default": [
+      1,
+      1
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 6.2,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ChannelShuffle",
+   "lib": "albumentations",
+   "name": "ChannelShuffle",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Randomly rearrange channels of the image.",
+   "params": [],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 12.0,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ChromaticAberration",
+   "lib": "albumentations",
+   "name": "ChromaticAberration",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Add lateral chromatic aberration by distorting the red and blue channels of the input image.",
+   "params": [
+    {
+     "name": "primary_distortion_limit",
+     "kind": "range",
+     "default": [
+      -0.02,
+      0.02
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "secondary_distortion_limit",
+     "kind": "range",
+     "default": [
+      -0.05,
+      0.05
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "mode",
+     "kind": "choice",
+     "default": "green_purple",
+     "choices": [
+      "green_purple",
+      "red_blue",
+      "random"
+     ]
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 20.0,
+   "changed": true
+  },
+  {
+   "id": "albumentations.CoarseDropout",
+   "lib": "albumentations",
+   "name": "CoarseDropout",
+   "category": "spatial",
+   "module": "albumentations.augmentations.dropout.coarse_dropout",
+   "doc": "CoarseDropout randomly drops out rectangular regions from the image and optionally,",
+   "params": [
+    {
+     "name": "num_holes_range",
+     "kind": "range",
+     "default": [
+      1,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "hole_height_range",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "hole_width_range",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "fill",
+     "kind": "choice",
+     "default": 0,
+     "choices": [
+      "random",
+      "random_uniform",
+      "inpaint_telea",
+      "inpaint_ns"
+     ]
+    },
+    {
+     "name": "fill_mask",
+     "kind": "json",
+     "default": null
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 9.5,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ColorJitter",
+   "lib": "albumentations",
+   "name": "ColorJitter",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Randomly changes the brightness, contrast, saturation, and hue of an image.",
+   "params": [
+    {
+     "name": "brightness",
+     "kind": "range",
+     "default": [
+      0.8,
+      1.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "contrast",
+     "kind": "range",
+     "default": [
+      0.8,
+      1.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "saturation",
+     "kind": "range",
+     "default": [
+      0.8,
+      1.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "hue",
+     "kind": "range",
+     "default": [
+      -0.5,
+      0.5
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 22.2,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Crop",
+   "lib": "albumentations",
+   "name": "Crop",
+   "category": "spatial",
+   "module": "albumentations.augmentations.crops.transforms",
+   "doc": "Crop a specific region from the input image.",
+   "params": [
+    {
+     "name": "x_min",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "y_min",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "x_max",
+     "kind": "int",
+     "default": 1024
+    },
+    {
+     "name": "y_max",
+     "kind": "int",
+     "default": 1024
+    },
+    {
+     "name": "pad_if_needed",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "pad_position",
+     "kind": "choice",
+     "default": "center",
+     "choices": [
+      "center",
+      "top_left",
+      "top_right",
+      "bottom_left",
+      "bottom_right",
+      "random"
+     ]
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 5.7,
+   "changed": true,
+   "fix_args": {
+    "x_min": 0,
+    "y_min": 0,
+    "x_max": 600,
+    "y_max": 800
+   }
+  },
+  {
+   "id": "albumentations.CropAndPad",
+   "lib": "albumentations",
+   "name": "CropAndPad",
+   "category": "spatial",
+   "module": "albumentations.augmentations.crops.transforms",
+   "doc": "Crop and pad images by pixel amounts or fractions of image sizes.",
+   "params": [
+    {
+     "name": "px",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "percent",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "keep_size",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "sample_independently",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 7.3,
+   "changed": true,
+   "fix_args": {
+    "percent": [
+     -0.1,
+     0.1
+    ]
+   }
+  },
+  {
+   "id": "albumentations.D4",
+   "lib": "albumentations",
+   "name": "D4",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.flip",
+   "doc": "Applies one of the eight possible D4 dihedral group transformations to a square-shaped input,",
+   "params": [],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 8.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Defocus",
+   "lib": "albumentations",
+   "name": "Defocus",
+   "category": "pixel",
+   "module": "albumentations.augmentations.blur.transforms",
+   "doc": "Apply defocus blur to the input image.",
+   "params": [
+    {
+     "name": "radius",
+     "kind": "range",
+     "default": [
+      3,
+      10
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "alias_blur",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.5
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 71.2,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Downscale",
+   "lib": "albumentations",
+   "name": "Downscale",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Decrease image quality by downscaling and upscaling back.",
+   "params": [
+    {
+     "name": "scale_range",
+     "kind": "range",
+     "default": [
+      0.25,
+      0.25
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "interpolation_pair",
+     "kind": "json",
+     "default": {
+      "upscale": 0,
+      "downscale": 0
+     }
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 4.4,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ElasticTransform",
+   "lib": "albumentations",
+   "name": "ElasticTransform",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.distortion",
+   "doc": "Apply elastic deformation to images, masks, bounding boxes, and keypoints.",
+   "params": [
+    {
+     "name": "alpha",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "sigma",
+     "kind": "int",
+     "default": 50
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "approximate",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "same_dxdy",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "noise_distribution",
+     "kind": "choice",
+     "default": "gaussian",
+     "choices": [
+      "gaussian",
+      "uniform"
+     ]
+    },
+    {
+     "name": "keypoint_remapping_method",
+     "kind": "choice",
+     "default": "mask",
+     "choices": [
+      "direct",
+      "mask"
+     ]
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 198.1,
+   "changed": false
+  },
+  {
+   "id": "albumentations.Emboss",
+   "lib": "albumentations",
+   "name": "Emboss",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply embossing effect to the input image.",
+   "params": [
+    {
+     "name": "alpha",
+     "kind": "range",
+     "default": [
+      0.2,
+      0.5
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "strength",
+     "kind": "range",
+     "default": [
+      0.2,
+      0.7
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 7.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Equalize",
+   "lib": "albumentations",
+   "name": "Equalize",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Equalize the image histogram.",
+   "params": [
+    {
+     "name": "mode",
+     "kind": "choice",
+     "default": "cv",
+     "choices": [
+      "cv",
+      "pil"
+     ]
+    },
+    {
+     "name": "by_channels",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "mask",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "mask_params",
+     "kind": "json",
+     "default": []
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 79.6,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Erasing",
+   "lib": "albumentations",
+   "name": "Erasing",
+   "category": "spatial",
+   "module": "albumentations.augmentations.dropout.coarse_dropout",
+   "doc": "Randomly erases rectangular regions in an image, following the Random Erasing Data Augmentation technique.",
+   "params": [
+    {
+     "name": "scale",
+     "kind": "range",
+     "default": [
+      0.02,
+      0.33
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "ratio",
+     "kind": "range",
+     "default": [
+      0.3,
+      3.3
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "fill",
+     "kind": "choice",
+     "default": 0,
+     "choices": [
+      "random",
+      "random_uniform",
+      "inpaint_telea",
+      "inpaint_ns"
+     ]
+    },
+    {
+     "name": "fill_mask",
+     "kind": "json",
+     "default": null
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 7.4,
+   "changed": true
+  },
+  {
+   "id": "albumentations.FancyPCA",
+   "lib": "albumentations",
+   "name": "FancyPCA",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply Fancy PCA augmentation to the input image.",
+   "params": [
+    {
+     "name": "alpha",
+     "kind": "float",
+     "default": 0.1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 249.5,
+   "changed": true
+  },
+  {
+   "id": "albumentations.FrequencyMasking",
+   "lib": "albumentations",
+   "name": "FrequencyMasking",
+   "category": "spatial",
+   "module": "albumentations.augmentations.spectrogram.transform",
+   "doc": "Apply masking to a spectrogram in the frequency domain.",
+   "params": [
+    {
+     "name": "freq_mask_param",
+     "kind": "int",
+     "default": 30
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 9.7,
+   "changed": false
+  },
+  {
+   "id": "albumentations.FromFloat",
+   "lib": "albumentations",
+   "name": "FromFloat",
+   "category": "pixel",
+   "module": "albumentations.augmentations.other.type_transform",
+   "doc": "Convert an image from floating point representation to the specified data type.",
+   "params": [
+    {
+     "name": "dtype",
+     "kind": "choice",
+     "default": "uint8",
+     "choices": [
+      "uint8",
+      "uint16",
+      "uint32"
+     ]
+    },
+    {
+     "name": "max_value",
+     "kind": "json",
+     "default": null
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 100.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.GaussNoise",
+   "lib": "albumentations",
+   "name": "GaussNoise",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply Gaussian noise to the input image.",
+   "params": [
+    {
+     "name": "std_range",
+     "kind": "range",
+     "default": [
+      0.2,
+      0.44
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "mean_range",
+     "kind": "range",
+     "default": [
+      0.0,
+      0.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "per_channel",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "noise_scale_factor",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 101.4,
+   "changed": true
+  },
+  {
+   "id": "albumentations.GaussianBlur",
+   "lib": "albumentations",
+   "name": "GaussianBlur",
+   "category": "pixel",
+   "module": "albumentations.augmentations.blur.transforms",
+   "doc": "Apply Gaussian blur to the input image using a randomly sized kernel.",
+   "params": [
+    {
+     "name": "blur_limit",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "sigma_limit",
+     "kind": "range",
+     "default": [
+      0.5,
+      3.0
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 9.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.GlassBlur",
+   "lib": "albumentations",
+   "name": "GlassBlur",
+   "category": "pixel",
+   "module": "albumentations.augmentations.blur.transforms",
+   "doc": "Apply a glass blur effect to the input image.",
+   "params": [
+    {
+     "name": "sigma",
+     "kind": "float",
+     "default": 0.7
+    },
+    {
+     "name": "max_delta",
+     "kind": "int",
+     "default": 4
+    },
+    {
+     "name": "iterations",
+     "kind": "int",
+     "default": 2
+    },
+    {
+     "name": "mode",
+     "kind": "choice",
+     "default": "fast",
+     "choices": [
+      "fast",
+      "exact"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 390.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.GridDistortion",
+   "lib": "albumentations",
+   "name": "GridDistortion",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.distortion",
+   "doc": "Apply grid distortion to images, masks, bounding boxes, and keypoints.",
+   "params": [
+    {
+     "name": "num_steps",
+     "kind": "int",
+     "default": 5
+    },
+    {
+     "name": "distort_limit",
+     "kind": "range",
+     "default": [
+      -0.3,
+      0.3
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "normalized",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "keypoint_remapping_method",
+     "kind": "choice",
+     "default": "mask",
+     "choices": [
+      "direct",
+      "mask"
+     ]
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 36.8,
+   "changed": true
+  },
+  {
+   "id": "albumentations.GridDropout",
+   "lib": "albumentations",
+   "name": "GridDropout",
+   "category": "spatial",
+   "module": "albumentations.augmentations.dropout.grid_dropout",
+   "doc": "Apply GridDropout augmentation to images, masks, bounding boxes, and keypoints.",
+   "params": [
+    {
+     "name": "ratio",
+     "kind": "float",
+     "default": 0.5
+    },
+    {
+     "name": "random_offset",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "unit_size_range",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "holes_number_xy",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "shift_xy",
+     "kind": "range",
+     "default": [
+      0,
+      0
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "fill",
+     "kind": "choice",
+     "default": 0,
+     "choices": [
+      "random",
+      "random_uniform",
+      "inpaint_telea",
+      "inpaint_ns"
+     ]
+    },
+    {
+     "name": "fill_mask",
+     "kind": "json",
+     "default": null
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 6.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.GridElasticDeform",
+   "lib": "albumentations",
+   "name": "GridElasticDeform",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.transforms",
+   "doc": "Apply elastic deformations to images, masks, bounding boxes, and keypoints using a grid-based approach.",
+   "params": [
+    {
+     "name": "num_grid_xy",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "magnitude",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 62.3,
+   "changed": true,
+   "fix_args": {
+    "num_grid_xy": [
+     4,
+     4
+    ],
+    "magnitude": 10
+   }
+  },
+  {
+   "id": "albumentations.HEStain",
+   "lib": "albumentations",
+   "name": "HEStain",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Applies H&E (Hematoxylin and Eosin) stain augmentation to histopathology images.",
+   "params": [
+    {
+     "name": "method",
+     "kind": "choice",
+     "default": "random_preset",
+     "choices": [
+      "preset",
+      "random_preset",
+      "vahadane",
+      "macenko"
+     ]
+    },
+    {
+     "name": "preset",
+     "kind": "choice",
+     "default": null,
+     "choices": [
+      "ruifrok",
+      "macenko",
+      "standard",
+      "high_contrast",
+      "h_heavy",
+      "e_heavy",
+      "dark",
+      "light"
+     ]
+    },
+    {
+     "name": "intensity_scale_range",
+     "kind": "range",
+     "default": [
+      0.7,
+      1.3
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "intensity_shift_range",
+     "kind": "range",
+     "default": [
+      -0.2,
+      0.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "augment_background",
+     "kind": "bool",
+     "default": false
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 332.8,
+   "changed": true
+  },
+  {
+   "id": "albumentations.HorizontalFlip",
+   "lib": "albumentations",
+   "name": "HorizontalFlip",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.flip",
+   "doc": "Flip the input horizontally around the y-axis.",
+   "params": [],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 4.8,
+   "changed": true
+  },
+  {
+   "id": "albumentations.HueSaturationValue",
+   "lib": "albumentations",
+   "name": "HueSaturationValue",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Randomly change hue, saturation and value of the input image.",
+   "params": [
+    {
+     "name": "hue_shift_limit",
+     "kind": "range",
+     "default": [
+      -20,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "sat_shift_limit",
+     "kind": "range",
+     "default": [
+      -30,
+      30
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "val_shift_limit",
+     "kind": "range",
+     "default": [
+      -20,
+      20
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 15.2,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ISONoise",
+   "lib": "albumentations",
+   "name": "ISONoise",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Applies camera sensor noise to the input image, simulating high ISO settings.",
+   "params": [
+    {
+     "name": "color_shift",
+     "kind": "range",
+     "default": [
+      0.01,
+      0.05
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "intensity",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.5
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 186.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Illumination",
+   "lib": "albumentations",
+   "name": "Illumination",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply various illumination effects to the image.",
+   "params": [
+    {
+     "name": "mode",
+     "kind": "choice",
+     "default": "linear",
+     "choices": [
+      "linear",
+      "corner",
+      "gaussian"
+     ]
+    },
+    {
+     "name": "intensity_range",
+     "kind": "range",
+     "default": [
+      0.01,
+      0.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "effect_type",
+     "kind": "choice",
+     "default": "both",
+     "choices": [
+      "brighten",
+      "darken",
+      "both"
+     ]
+    },
+    {
+     "name": "angle_range",
+     "kind": "range",
+     "default": [
+      0,
+      360
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "center_range",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.9
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "sigma_range",
+     "kind": "range",
+     "default": [
+      0.2,
+      1.0
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 92.2,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ImageCompression",
+   "lib": "albumentations",
+   "name": "ImageCompression",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Decrease image quality by applying JPEG or WebP compression.",
+   "params": [
+    {
+     "name": "compression_type",
+     "kind": "choice",
+     "default": "jpeg",
+     "choices": [
+      "jpeg",
+      "webp"
+     ]
+    },
+    {
+     "name": "quality_range",
+     "kind": "range",
+     "default": [
+      99,
+      100
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 19.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.InvertImg",
+   "lib": "albumentations",
+   "name": "InvertImg",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Invert the input image by subtracting pixel values from max values of the image types,",
+   "params": [],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 4.9,
+   "changed": true
+  },
+  {
+   "id": "albumentations.LongestMaxSize",
+   "lib": "albumentations",
+   "name": "LongestMaxSize",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.resize",
+   "doc": "Rescale an image so that the longest side is equal to max_size or sides meet max_size_hw constraints,",
+   "params": [
+    {
+     "name": "max_size",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "max_size_hw",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "area_for_downscale",
+     "kind": "choice",
+     "default": null,
+     "choices": [
+      null,
+      "image",
+      "image_mask"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 6.8,
+   "changed": true,
+   "fix_args": {
+    "max_size": 640
+   }
+  },
+  {
+   "id": "albumentations.MedianBlur",
+   "lib": "albumentations",
+   "name": "MedianBlur",
+   "category": "pixel",
+   "module": "albumentations.augmentations.blur.transforms",
+   "doc": "Apply median blur to the input image.",
+   "params": [
+    {
+     "name": "blur_limit",
+     "kind": "range",
+     "default": [
+      3,
+      7
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 9.5,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Morphological",
+   "lib": "albumentations",
+   "name": "Morphological",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.transforms",
+   "doc": "Apply a morphological operation (dilation or erosion) to an image,",
+   "params": [
+    {
+     "name": "scale",
+     "kind": "range",
+     "default": [
+      2,
+      3
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "operation",
+     "kind": "choice",
+     "default": "dilation",
+     "choices": [
+      "erosion",
+      "dilation"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 6.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.MotionBlur",
+   "lib": "albumentations",
+   "name": "MotionBlur",
+   "category": "pixel",
+   "module": "albumentations.augmentations.blur.transforms",
+   "doc": "Apply motion blur to the input image using a directional kernel.",
+   "params": [
+    {
+     "name": "blur_limit",
+     "kind": "range",
+     "default": [
+      3,
+      7
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "allow_shifted",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "angle_range",
+     "kind": "range",
+     "default": [
+      0,
+      360
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "direction_range",
+     "kind": "range",
+     "default": [
+      -1.0,
+      1.0
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 11.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.MultiplicativeNoise",
+   "lib": "albumentations",
+   "name": "MultiplicativeNoise",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply multiplicative noise to the input image.",
+   "params": [
+    {
+     "name": "multiplier",
+     "kind": "range",
+     "default": [
+      0.9,
+      1.1
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "per_channel",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "elementwise",
+     "kind": "bool",
+     "default": false
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 7.6,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Normalize",
+   "lib": "albumentations",
+   "name": "Normalize",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Applies various normalization techniques to an image. The specific normalization technique can be selected",
+   "params": [
+    {
+     "name": "mean",
+     "kind": "json",
+     "default": [
+      0.485,
+      0.456,
+      0.406
+     ]
+    },
+    {
+     "name": "std",
+     "kind": "json",
+     "default": [
+      0.229,
+      0.224,
+      0.225
+     ]
+    },
+    {
+     "name": "max_pixel_value",
+     "kind": "float",
+     "default": 255.0
+    },
+    {
+     "name": "normalization",
+     "kind": "choice",
+     "default": "standard",
+     "choices": [
+      "standard",
+      "image",
+      "image_per_channel",
+      "min_max",
+      "min_max_per_channel"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 67.1,
+   "changed": true
+  },
+  {
+   "id": "albumentations.OpticalDistortion",
+   "lib": "albumentations",
+   "name": "OpticalDistortion",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.distortion",
+   "doc": "Apply optical distortion to images, masks, bounding boxes, and keypoints.",
+   "params": [
+    {
+     "name": "distort_limit",
+     "kind": "range",
+     "default": [
+      -0.05,
+      0.05
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "mode",
+     "kind": "choice",
+     "default": "camera",
+     "choices": [
+      "camera",
+      "fisheye"
+     ]
+    },
+    {
+     "name": "keypoint_remapping_method",
+     "kind": "choice",
+     "default": "mask",
+     "choices": [
+      "direct",
+      "mask"
+     ]
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 21.5,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Pad",
+   "lib": "albumentations",
+   "name": "Pad",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.pad",
+   "doc": "Pad the sides of an image by specified number of pixels.",
+   "params": [
+    {
+     "name": "padding",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 5.2,
+   "changed": false
+  },
+  {
+   "id": "albumentations.PadIfNeeded",
+   "lib": "albumentations",
+   "name": "PadIfNeeded",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.pad",
+   "doc": "Pads the sides of an image if the image dimensions are less than the specified minimum dimensions.",
+   "params": [
+    {
+     "name": "min_height",
+     "kind": "int",
+     "default": 1024
+    },
+    {
+     "name": "min_width",
+     "kind": "int",
+     "default": 1024
+    },
+    {
+     "name": "pad_height_divisor",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "pad_width_divisor",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "position",
+     "kind": "choice",
+     "default": "center",
+     "choices": [
+      "center",
+      "top_left",
+      "top_right",
+      "bottom_left",
+      "bottom_right",
+      "random"
+     ]
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 8.7,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Perspective",
+   "lib": "albumentations",
+   "name": "Perspective",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.transforms",
+   "doc": "Apply random four point perspective transformation to the input.",
+   "params": [
+    {
+     "name": "scale",
+     "kind": "range",
+     "default": [
+      0.05,
+      0.1
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "keep_size",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "fit_output",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 16.2,
+   "changed": true
+  },
+  {
+   "id": "albumentations.PiecewiseAffine",
+   "lib": "albumentations",
+   "name": "PiecewiseAffine",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.distortion",
+   "doc": "Apply piecewise affine transformations to the input image.",
+   "params": [
+    {
+     "name": "scale",
+     "kind": "range",
+     "default": [
+      0.03,
+      0.05
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "nb_rows",
+     "kind": "range",
+     "default": [
+      4,
+      4
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "nb_cols",
+     "kind": "range",
+     "default": [
+      4,
+      4
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "absolute_scale",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "keypoint_remapping_method",
+     "kind": "choice",
+     "default": "mask",
+     "choices": [
+      "direct",
+      "mask"
+     ]
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 23620.5,
+   "changed": true
+  },
+  {
+   "id": "albumentations.PixelDropout",
+   "lib": "albumentations",
+   "name": "PixelDropout",
+   "category": "spatial",
+   "module": "albumentations.augmentations.dropout.transforms",
+   "doc": "Drops random pixels from the image.",
+   "params": [
+    {
+     "name": "dropout_prob",
+     "kind": "float",
+     "default": 0.01
+    },
+    {
+     "name": "per_channel",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "drop_value",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "mask_drop_value",
+     "kind": "json",
+     "default": null
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 36.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.PlanckianJitter",
+   "lib": "albumentations",
+   "name": "PlanckianJitter",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Applies Planckian Jitter to the input image, simulating color temperature variations in illumination.",
+   "params": [
+    {
+     "name": "mode",
+     "kind": "choice",
+     "default": "blackbody",
+     "choices": [
+      "blackbody",
+      "cied"
+     ]
+    },
+    {
+     "name": "temperature_limit",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "sampling_method",
+     "kind": "choice",
+     "default": "uniform",
+     "choices": [
+      "uniform",
+      "gaussian"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 14.1,
+   "changed": true
+  },
+  {
+   "id": "albumentations.PlasmaBrightnessContrast",
+   "lib": "albumentations",
+   "name": "PlasmaBrightnessContrast",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply plasma fractal pattern to modify image brightness and contrast.",
+   "params": [
+    {
+     "name": "brightness_range",
+     "kind": "range",
+     "default": [
+      -0.3,
+      0.3
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "contrast_range",
+     "kind": "range",
+     "default": [
+      -0.3,
+      0.3
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "plasma_size",
+     "kind": "int",
+     "default": 256
+    },
+    {
+     "name": "roughness",
+     "kind": "float",
+     "default": 3.0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 241.8,
+   "changed": true
+  },
+  {
+   "id": "albumentations.PlasmaShadow",
+   "lib": "albumentations",
+   "name": "PlasmaShadow",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply plasma-based shadow effect to the image using Diamond-Square algorithm.",
+   "params": [
+    {
+     "name": "shadow_intensity_range",
+     "kind": "range",
+     "default": [
+      0.3,
+      0.7
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "plasma_size",
+     "kind": "int",
+     "default": 256
+    },
+    {
+     "name": "roughness",
+     "kind": "float",
+     "default": 3.0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 156.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Posterize",
+   "lib": "albumentations",
+   "name": "Posterize",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Reduces the number of bits for each color channel in the image.",
+   "params": [
+    {
+     "name": "num_bits",
+     "kind": "int",
+     "default": 4
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 18.4,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RGBShift",
+   "lib": "albumentations",
+   "name": "RGBShift",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Randomly shift values for each channel of the input RGB image.",
+   "params": [
+    {
+     "name": "r_shift_limit",
+     "kind": "range",
+     "default": [
+      -20,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "g_shift_limit",
+     "kind": "range",
+     "default": [
+      -20,
+      20
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "b_shift_limit",
+     "kind": "range",
+     "default": [
+      -20,
+      20
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 66.0,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomBrightnessContrast",
+   "lib": "albumentations",
+   "name": "RandomBrightnessContrast",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Randomly changes the brightness and contrast of the input image.",
+   "params": [
+    {
+     "name": "brightness_limit",
+     "kind": "range",
+     "default": [
+      -0.2,
+      0.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "contrast_limit",
+     "kind": "range",
+     "default": [
+      -0.2,
+      0.2
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "brightness_by_max",
+     "kind": "bool",
+     "default": true
+    },
+    {
+     "name": "ensure_safe_range",
+     "kind": "bool",
+     "default": false
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 8.2,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomCrop",
+   "lib": "albumentations",
+   "name": "RandomCrop",
+   "category": "spatial",
+   "module": "albumentations.augmentations.crops.transforms",
+   "doc": "Crop a random part of the input.",
+   "params": [
+    {
+     "name": "height",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "width",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "pad_if_needed",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "pad_position",
+     "kind": "choice",
+     "default": "center",
+     "choices": [
+      "center",
+      "top_left",
+      "top_right",
+      "bottom_left",
+      "bottom_right",
+      "random"
+     ]
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "float",
+     "default": 0.0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "float",
+     "default": 0.0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 4.4,
+   "changed": true,
+   "fix_args": {
+    "height": 512,
+    "width": 512
+   }
+  },
+  {
+   "id": "albumentations.RandomCropFromBorders",
+   "lib": "albumentations",
+   "name": "RandomCropFromBorders",
+   "category": "spatial",
+   "module": "albumentations.augmentations.crops.transforms",
+   "doc": "Randomly crops the input from its borders without resizing.",
+   "params": [
+    {
+     "name": "crop_left",
+     "kind": "float",
+     "default": 0.1
+    },
+    {
+     "name": "crop_right",
+     "kind": "float",
+     "default": 0.1
+    },
+    {
+     "name": "crop_top",
+     "kind": "float",
+     "default": 0.1
+    },
+    {
+     "name": "crop_bottom",
+     "kind": "float",
+     "default": 0.1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 9.1,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomFog",
+   "lib": "albumentations",
+   "name": "RandomFog",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Simulates fog for the image by adding random fog-like artifacts.",
+   "params": [
+    {
+     "name": "alpha_coef",
+     "kind": "float",
+     "default": 0.08
+    },
+    {
+     "name": "fog_coef_range",
+     "kind": "range",
+     "default": [
+      0.3,
+      1
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 4272.1,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomGamma",
+   "lib": "albumentations",
+   "name": "RandomGamma",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Applies random gamma correction to the input image.",
+   "params": [
+    {
+     "name": "gamma_limit",
+     "kind": "range",
+     "default": [
+      80,
+      120
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 8.9,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomGravel",
+   "lib": "albumentations",
+   "name": "RandomGravel",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Adds gravel-like artifacts to the input image.",
+   "params": [
+    {
+     "name": "gravel_roi",
+     "kind": "json",
+     "default": [
+      0.1,
+      0.4,
+      0.9,
+      0.9
+     ]
+    },
+    {
+     "name": "number_of_patches",
+     "kind": "int",
+     "default": 2
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 14.9,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomGridShuffle",
+   "lib": "albumentations",
+   "name": "RandomGridShuffle",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.transforms",
+   "doc": "Randomly shuffles the grid's cells on an image, mask, or keypoints,",
+   "params": [
+    {
+     "name": "grid",
+     "kind": "range",
+     "default": [
+      3,
+      3
+     ],
+     "numeric": "int"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 12.7,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomRain",
+   "lib": "albumentations",
+   "name": "RandomRain",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Adds rain effects to an image.",
+   "params": [
+    {
+     "name": "slant_range",
+     "kind": "range",
+     "default": [
+      -10,
+      10
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "drop_length",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "drop_width",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "drop_color",
+     "kind": "json",
+     "default": [
+      200,
+      200,
+      200
+     ]
+    },
+    {
+     "name": "blur_value",
+     "kind": "int",
+     "default": 7
+    },
+    {
+     "name": "brightness_coefficient",
+     "kind": "float",
+     "default": 0.7
+    },
+    {
+     "name": "rain_type",
+     "kind": "choice",
+     "default": "default",
+     "choices": [
+      "drizzle",
+      "heavy",
+      "torrential",
+      "default"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 11.1,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomResizedCrop",
+   "lib": "albumentations",
+   "name": "RandomResizedCrop",
+   "category": "spatial",
+   "module": "albumentations.augmentations.crops.transforms",
+   "doc": "Crop a random part of the input and rescale it to a specified size.",
+   "params": [
+    {
+     "name": "size",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "scale",
+     "kind": "range",
+     "default": [
+      0.08,
+      1.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "ratio",
+     "kind": "range",
+     "default": [
+      0.75,
+      1.3333333333333333
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "area_for_downscale",
+     "kind": "choice",
+     "default": null,
+     "choices": [
+      null,
+      "image",
+      "image_mask"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 16.3,
+   "changed": true,
+   "fix_args": {
+    "size": [
+     512,
+     512
+    ]
+   }
+  },
+  {
+   "id": "albumentations.RandomRotate90",
+   "lib": "albumentations",
+   "name": "RandomRotate90",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.rotate",
+   "doc": "Randomly rotate the input by 90 degrees zero or more times.",
+   "params": [],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 8.9,
+   "changed": false
+  },
+  {
+   "id": "albumentations.RandomScale",
+   "lib": "albumentations",
+   "name": "RandomScale",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.resize",
+   "doc": "Randomly resize the input. Output image size is different from the input image size.",
+   "params": [
+    {
+     "name": "scale_limit",
+     "kind": "range",
+     "default": [
+      -0.1,
+      0.1
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "area_for_downscale",
+     "kind": "choice",
+     "default": null,
+     "choices": [
+      null,
+      "image",
+      "image_mask"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 4.6,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomShadow",
+   "lib": "albumentations",
+   "name": "RandomShadow",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Simulates shadows for the image by reducing the brightness of the image in shadow regions.",
+   "params": [
+    {
+     "name": "shadow_roi",
+     "kind": "json",
+     "default": [
+      0,
+      0.5,
+      1,
+      1
+     ]
+    },
+    {
+     "name": "num_shadows_limit",
+     "kind": "range",
+     "default": [
+      1,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "shadow_dimension",
+     "kind": "int",
+     "default": 5
+    },
+    {
+     "name": "shadow_intensity_range",
+     "kind": "range",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 63.8,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomSizedCrop",
+   "lib": "albumentations",
+   "name": "RandomSizedCrop",
+   "category": "spatial",
+   "module": "albumentations.augmentations.crops.transforms",
+   "doc": "Crop a random part of the input and rescale it to a specific size.",
+   "params": [
+    {
+     "name": "min_max_height",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "size",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "w2h_ratio",
+     "kind": "float",
+     "default": 1.0
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "area_for_downscale",
+     "kind": "choice",
+     "default": null,
+     "choices": [
+      null,
+      "image",
+      "image_mask"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2.2,
+   "changed": true,
+   "fix_args": {
+    "min_max_height": [
+     600,
+     900
+    ],
+    "size": [
+     512,
+     512
+    ]
+   }
+  },
+  {
+   "id": "albumentations.RandomSnow",
+   "lib": "albumentations",
+   "name": "RandomSnow",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Applies a random snow effect to the input image.",
+   "params": [
+    {
+     "name": "brightness_coeff",
+     "kind": "float",
+     "default": 2.5
+    },
+    {
+     "name": "snow_point_range",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.3
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "method",
+     "kind": "choice",
+     "default": "bleach",
+     "choices": [
+      "bleach",
+      "texture"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 18.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomSunFlare",
+   "lib": "albumentations",
+   "name": "RandomSunFlare",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Simulates a sun flare effect on the image by adding circles of light.",
+   "params": [
+    {
+     "name": "flare_roi",
+     "kind": "json",
+     "default": [
+      0,
+      0,
+      1,
+      0.5
+     ]
+    },
+    {
+     "name": "src_radius",
+     "kind": "int",
+     "default": 400
+    },
+    {
+     "name": "src_color",
+     "kind": "json",
+     "default": [
+      255,
+      255,
+      255
+     ]
+    },
+    {
+     "name": "angle_range",
+     "kind": "range",
+     "default": [
+      0,
+      1
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "num_flare_circles_range",
+     "kind": "range",
+     "default": [
+      6,
+      10
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "method",
+     "kind": "choice",
+     "default": "overlay",
+     "choices": [
+      "overlay",
+      "physics_based"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 569.5,
+   "changed": true
+  },
+  {
+   "id": "albumentations.RandomToneCurve",
+   "lib": "albumentations",
+   "name": "RandomToneCurve",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Randomly change the relationship between bright and dark areas of the image by manipulating its tone curve.",
+   "params": [
+    {
+     "name": "scale",
+     "kind": "float",
+     "default": 0.1
+    },
+    {
+     "name": "per_channel",
+     "kind": "bool",
+     "default": false
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 4.8,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Resize",
+   "lib": "albumentations",
+   "name": "Resize",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.resize",
+   "doc": "Resize the input to the given height and width.",
+   "params": [
+    {
+     "name": "height",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "width",
+     "kind": "json",
+     "default": null,
+     "required": true
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "area_for_downscale",
+     "kind": "choice",
+     "default": null,
+     "choices": [
+      null,
+      "image",
+      "image_mask"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 11.1,
+   "changed": true,
+   "fix_args": {
+    "height": 512,
+    "width": 512
+   }
+  },
+  {
+   "id": "albumentations.RingingOvershoot",
+   "lib": "albumentations",
+   "name": "RingingOvershoot",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Create ringing or overshoot artifacts by convolving the image with a 2D sinc filter.",
+   "params": [
+    {
+     "name": "blur_limit",
+     "kind": "range",
+     "default": [
+      7,
+      15
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "cutoff",
+     "kind": "range",
+     "default": [
+      0.7853981633974483,
+      1.5707963267948966
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 69.4,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Rotate",
+   "lib": "albumentations",
+   "name": "Rotate",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.rotate",
+   "doc": "Rotate the input by an angle selected randomly from the uniform distribution.",
+   "params": [
+    {
+     "name": "limit",
+     "kind": "range",
+     "default": [
+      -90,
+      90
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "rotate_method",
+     "kind": "choice",
+     "default": "largest_box",
+     "choices": [
+      "largest_box",
+      "ellipse"
+     ]
+    },
+    {
+     "name": "crop_border",
+     "kind": "bool",
+     "default": false
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 7.4,
+   "changed": true
+  },
+  {
+   "id": "albumentations.SafeRotate",
+   "lib": "albumentations",
+   "name": "SafeRotate",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.rotate",
+   "doc": "Rotate the input inside the input's frame by an angle selected randomly from the uniform distribution.",
+   "params": [
+    {
+     "name": "limit",
+     "kind": "range",
+     "default": [
+      -90,
+      90
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "rotate_method",
+     "kind": "choice",
+     "default": "largest_box",
+     "choices": [
+      "largest_box",
+      "ellipse"
+     ]
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 4.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.SaltAndPepper",
+   "lib": "albumentations",
+   "name": "SaltAndPepper",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply salt and pepper noise to the input image.",
+   "params": [
+    {
+     "name": "amount",
+     "kind": "range",
+     "default": [
+      0.01,
+      0.06
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "salt_vs_pepper",
+     "kind": "range",
+     "default": [
+      0.4,
+      0.6
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 33.8,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Sharpen",
+   "lib": "albumentations",
+   "name": "Sharpen",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Sharpen the input image using either kernel-based or Gaussian interpolation method.",
+   "params": [
+    {
+     "name": "alpha",
+     "kind": "range",
+     "default": [
+      0.2,
+      0.5
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "lightness",
+     "kind": "range",
+     "default": [
+      0.5,
+      1.0
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "method",
+     "kind": "choice",
+     "default": "kernel",
+     "choices": [
+      "kernel",
+      "gaussian"
+     ]
+    },
+    {
+     "name": "kernel_size",
+     "kind": "int",
+     "default": 5
+    },
+    {
+     "name": "sigma",
+     "kind": "float",
+     "default": 1.0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 19.4,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ShiftScaleRotate",
+   "lib": "albumentations",
+   "name": "ShiftScaleRotate",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.transforms",
+   "doc": "Randomly apply affine transforms: translate, scale and rotate the input.",
+   "params": [
+    {
+     "name": "shift_limit",
+     "kind": "range",
+     "default": [
+      -0.0625,
+      0.0625
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "scale_limit",
+     "kind": "range",
+     "default": [
+      -0.1,
+      0.1
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "rotate_limit",
+     "kind": "range",
+     "default": [
+      -45,
+      45
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "shift_limit_x",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "shift_limit_y",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "rotate_method",
+     "kind": "choice",
+     "default": "largest_box",
+     "choices": [
+      "largest_box",
+      "ellipse"
+     ]
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 9.1,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ShotNoise",
+   "lib": "albumentations",
+   "name": "ShotNoise",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply shot noise to the image by modeling photon counting as a Poisson process.",
+   "params": [
+    {
+     "name": "scale_range",
+     "kind": "range",
+     "default": [
+      0.1,
+      0.3
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 413.7,
+   "changed": true
+  },
+  {
+   "id": "albumentations.SmallestMaxSize",
+   "lib": "albumentations",
+   "name": "SmallestMaxSize",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.resize",
+   "doc": "Rescale an image so that minimum side is equal to max_size or sides meet max_size_hw constraints,",
+   "params": [
+    {
+     "name": "max_size",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "max_size_hw",
+     "kind": "json",
+     "default": null
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "area_for_downscale",
+     "kind": "choice",
+     "default": null,
+     "choices": [
+      null,
+      "image",
+      "image_mask"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3.6,
+   "changed": true,
+   "fix_args": {
+    "max_size": 640
+   }
+  },
+  {
+   "id": "albumentations.Solarize",
+   "lib": "albumentations",
+   "name": "Solarize",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Invert all pixel values above a threshold.",
+   "params": [
+    {
+     "name": "threshold_range",
+     "kind": "range",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 6.2,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Spatter",
+   "lib": "albumentations",
+   "name": "Spatter",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply spatter transform. It simulates corruption which can occlude a lens in the form of rain or mud.",
+   "params": [
+    {
+     "name": "mean",
+     "kind": "range",
+     "default": [
+      0.65,
+      0.65
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "std",
+     "kind": "range",
+     "default": [
+      0.3,
+      0.3
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "gauss_sigma",
+     "kind": "range",
+     "default": [
+      2,
+      2
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "cutout_threshold",
+     "kind": "range",
+     "default": [
+      0.68,
+      0.68
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "intensity",
+     "kind": "range",
+     "default": [
+      0.6,
+      0.6
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "mode",
+     "kind": "choice",
+     "default": "rain",
+     "choices": [
+      "rain",
+      "mud"
+     ]
+    },
+    {
+     "name": "color",
+     "kind": "json",
+     "default": null
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 220.5,
+   "changed": true
+  },
+  {
+   "id": "albumentations.SquareSymmetry",
+   "lib": "albumentations",
+   "name": "SquareSymmetry",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.flip",
+   "doc": "Applies one of the eight possible square symmetry transformations to a square-shaped input.",
+   "params": [],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 9.4,
+   "changed": false
+  },
+  {
+   "id": "albumentations.Superpixels",
+   "lib": "albumentations",
+   "name": "Superpixels",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Transform images partially/completely to their superpixel representation.",
+   "params": [
+    {
+     "name": "p_replace",
+     "kind": "range",
+     "default": [
+      0,
+      0.1
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "n_segments",
+     "kind": "range",
+     "default": [
+      100,
+      100
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "max_size",
+     "kind": "int",
+     "default": 128
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 212.5,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ThinPlateSpline",
+   "lib": "albumentations",
+   "name": "ThinPlateSpline",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.distortion",
+   "doc": "Apply Thin Plate Spline (TPS) transformation to create smooth, non-rigid deformations.",
+   "params": [
+    {
+     "name": "scale_range",
+     "kind": "range",
+     "default": [
+      0.2,
+      0.4
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "num_control_points",
+     "kind": "int",
+     "default": 4
+    },
+    {
+     "name": "interpolation",
+     "kind": "int",
+     "default": 1
+    },
+    {
+     "name": "mask_interpolation",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "keypoint_remapping_method",
+     "kind": "choice",
+     "default": "mask",
+     "choices": [
+      "direct",
+      "mask"
+     ]
+    },
+    {
+     "name": "border_mode",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill_mask",
+     "kind": "int",
+     "default": 0
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 697.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.TimeMasking",
+   "lib": "albumentations",
+   "name": "TimeMasking",
+   "category": "spatial",
+   "module": "albumentations.augmentations.spectrogram.transform",
+   "doc": "Apply masking to a spectrogram in the time domain.",
+   "params": [
+    {
+     "name": "time_mask_param",
+     "kind": "int",
+     "default": 40
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 5.6,
+   "changed": false
+  },
+  {
+   "id": "albumentations.TimeReverse",
+   "lib": "albumentations",
+   "name": "TimeReverse",
+   "category": "spatial",
+   "module": "albumentations.augmentations.spectrogram.transform",
+   "doc": "Reverse the time axis of a spectrogram image, also known as time inversion.",
+   "params": [],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 17.0,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ToFloat",
+   "lib": "albumentations",
+   "name": "ToFloat",
+   "category": "pixel",
+   "module": "albumentations.augmentations.other.type_transform",
+   "doc": "Convert the input image to a floating-point representation.",
+   "params": [
+    {
+     "name": "max_value",
+     "kind": "json",
+     "default": null
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 83.5,
+   "changed": false
+  },
+  {
+   "id": "albumentations.ToGray",
+   "lib": "albumentations",
+   "name": "ToGray",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Convert an image to grayscale and optionally replicate the grayscale channel.",
+   "params": [
+    {
+     "name": "num_output_channels",
+     "kind": "int",
+     "default": 3
+    },
+    {
+     "name": "method",
+     "kind": "choice",
+     "default": "weighted_average",
+     "choices": [
+      "weighted_average",
+      "from_lab",
+      "desaturation",
+      "average",
+      "max",
+      "pca"
+     ]
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 15.0,
+   "changed": true
+  },
+  {
+   "id": "albumentations.ToRGB",
+   "lib": "albumentations",
+   "name": "ToRGB",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Convert an input image from grayscale to RGB format.",
+   "params": [
+    {
+     "name": "num_output_channels",
+     "kind": "int",
+     "default": 3
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2.2,
+   "changed": false
+  },
+  {
+   "id": "albumentations.ToSepia",
+   "lib": "albumentations",
+   "name": "ToSepia",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Apply a sepia filter to the input image.",
+   "params": [],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 3.7,
+   "changed": true
+  },
+  {
+   "id": "albumentations.Transpose",
+   "lib": "albumentations",
+   "name": "Transpose",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.flip",
+   "doc": "Transpose the input by swapping its rows and columns.",
+   "params": [],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 23.3,
+   "changed": true
+  },
+  {
+   "id": "albumentations.UnsharpMask",
+   "lib": "albumentations",
+   "name": "UnsharpMask",
+   "category": "pixel",
+   "module": "albumentations.augmentations.pixel.transforms",
+   "doc": "Sharpen the input image using Unsharp Masking processing and overlays the result with the original image.",
+   "params": [
+    {
+     "name": "blur_limit",
+     "kind": "range",
+     "default": [
+      3,
+      7
+     ],
+     "numeric": "int"
+    },
+    {
+     "name": "sigma_limit",
+     "kind": "float",
+     "default": 0.0
+    },
+    {
+     "name": "alpha",
+     "kind": "range",
+     "default": [
+      0.2,
+      0.5
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "threshold",
+     "kind": "int",
+     "default": 10
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 158.9,
+   "changed": true
+  },
+  {
+   "id": "albumentations.VerticalFlip",
+   "lib": "albumentations",
+   "name": "VerticalFlip",
+   "category": "spatial",
+   "module": "albumentations.augmentations.geometric.flip",
+   "doc": "Flip the input vertically around the x-axis.",
+   "params": [],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 6.7,
+   "changed": true
+  },
+  {
+   "id": "albumentations.XYMasking",
+   "lib": "albumentations",
+   "name": "XYMasking",
+   "category": "spatial",
+   "module": "albumentations.augmentations.dropout.xy_masking",
+   "doc": "Applies masking strips to an image, either horizontally (X axis) or vertically (Y axis),",
+   "params": [
+    {
+     "name": "num_masks_x",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "num_masks_y",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "mask_x_length",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "mask_y_length",
+     "kind": "int",
+     "default": 0
+    },
+    {
+     "name": "fill",
+     "kind": "choice",
+     "default": 0,
+     "choices": [
+      "random",
+      "random_uniform",
+      "inpaint_telea",
+      "inpaint_ns"
+     ]
+    },
+    {
+     "name": "fill_mask",
+     "kind": "json",
+     "default": null
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 2.0,
+   "changed": false
+  },
+  {
+   "id": "albumentations.ZoomBlur",
+   "lib": "albumentations",
+   "name": "ZoomBlur",
+   "category": "pixel",
+   "module": "albumentations.augmentations.blur.transforms",
+   "doc": "Apply zoom blur transform.",
+   "params": [
+    {
+     "name": "max_factor",
+     "kind": "range",
+     "default": [
+      1,
+      1.31
+     ],
+     "numeric": "float"
+    },
+    {
+     "name": "step_factor",
+     "kind": "range",
+     "default": [
+      0.01,
+      0.03
+     ],
+     "numeric": "float"
+    }
+   ],
+   "status": "ok",
+   "reason": "",
+   "avg_ms": 118.6,
+   "changed": true
+  }
+ ],
+ "excluded": [
+  {
+   "name": "ImageOverlay",
+   "lib": "augraphy",
+   "reason": "requires 'foreground'"
+  },
+  {
+   "name": "AtLeastOneBBoxRandomCrop",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "BBoxSafeRandomCrop",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "CenterCrop3D",
+   "reason": "3D volume transform",
+   "lib": "albumentations"
+  },
+  {
+   "name": "CoarseDropout3D",
+   "reason": "3D volume transform",
+   "lib": "albumentations"
+  },
+  {
+   "name": "ConstrainedCoarseDropout",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "CropNonEmptyMaskIfExists",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "CubicSymmetry",
+   "reason": "3D volume transform",
+   "lib": "albumentations"
+  },
+  {
+   "name": "FDA",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "HistogramMatching",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "Lambda",
+   "reason": "container/utility",
+   "lib": "albumentations"
+  },
+  {
+   "name": "MaskDropout",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "Mosaic",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "OverlayElements",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "Pad3D",
+   "reason": "3D volume transform",
+   "lib": "albumentations"
+  },
+  {
+   "name": "PadIfNeeded3D",
+   "reason": "3D volume transform",
+   "lib": "albumentations"
+  },
+  {
+   "name": "PixelDistributionAdaptation",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "RandomCrop3D",
+   "reason": "3D volume transform",
+   "lib": "albumentations"
+  },
+  {
+   "name": "RandomCropNearBBox",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "RandomSizedBBoxSafeCrop",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  },
+  {
+   "name": "TextImage",
+   "reason": "needs bboxes/masks/keypoints/metadata or reference images",
+   "lib": "albumentations"
+  }
+ ],
+ "smoke": {
+  "image": "synthetic 800x1000 document",
+  "timeout_s": 60,
+  "at": "2026-10-12T15:08:24"
+ }
+}
