@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { get } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { getJobDir, touchJobDir } from "@/lib/server/tmp";
 import { isValidId } from "@/lib/server/validate";
@@ -40,6 +41,34 @@ export async function GET(
 
   const url = new URL(request.url);
   const wantThumb = url.searchParams.get("thumb") === "1";
+
+  if (process.env.VERCEL) {
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      return NextResponse.json({ error: "Vercel Blob chưa được cấu hình." }, { status: 503 });
+    }
+    const candidates = wantThumb
+      ? [`jobs/${job}/thumb/${id}.webp`]
+      : ["png", "jpg", "webp"].map((ext) => `jobs/${job}/res/${id}.${ext}`);
+
+    for (const candidate of candidates) {
+      try {
+        const result = await get(candidate, { access: "private" });
+        if (result?.statusCode === 200 && result.stream) {
+          return new NextResponse(result.stream, {
+            status: 200,
+            headers: {
+              "Content-Type": result.blob.contentType || (wantThumb ? "image/webp" : "application/octet-stream"),
+              "Cache-Control": "private, no-store",
+              "X-Content-Type-Options": "nosniff",
+            },
+          });
+        }
+      } catch {
+        // Try the next supported image extension.
+      }
+    }
+    return NextResponse.json({ error: "Ảnh kết quả không tồn tại hoặc đã hết hạn." }, { status: 404 });
+  }
 
   let jobDir: string;
   try {
@@ -84,3 +113,4 @@ export async function GET(
     return NextResponse.json({ error: "Không thể đọc tệp kết quả." }, { status: 500 });
   }
 }
+

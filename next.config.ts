@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  outputFileTracingIncludes: {
+    "/api/**/*": ["./python/catalog.json"],
+  },
   turbopack: {
     rules: {
       "*.css": {
@@ -13,3 +16,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+

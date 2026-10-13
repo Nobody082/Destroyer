@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef } from "react";
+import { upload as uploadBlob } from "@vercel/blob/client";
 import { buildEffectDefaults, indexCatalogEffects } from "./catalog";
 import { type PresetDefinition, resolvePresetEffects } from "./presets";
 import type {
@@ -797,19 +798,44 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
         sourceName: state.sourceImage.name,
       };
 
-      const formData = new FormData();
-      formData.append("image", state.sourceImage.file, state.sourceImage.name);
-      formData.append("job", JSON.stringify(jobPayload));
-
       const controller = new AbortController();
       abortControllerRef.current = controller;
 
       try {
-        const res = await fetch("/api/generate", {
-          method: "POST",
-          body: formData,
-          signal: controller.signal,
-        });
+        const capabilitiesResponse = await fetch("/api/blob-upload", { signal: controller.signal });
+        const capabilities = (await capabilitiesResponse.json().catch(() => ({}))) as {
+          required?: boolean;
+          enabled?: boolean;
+        };
+
+        let res: Response;
+        if (capabilities.required) {
+          if (!capabilities.enabled) {
+            throw new Error("Vercel Blob chưa được kết nối. Hãy tạo Blob store riêng tư trong Storage của project.");
+          }
+          const blob = await uploadBlob(
+            `uploads/${crypto.randomUUID()}/${state.sourceImage.name}`,
+            state.sourceImage.file,
+            {
+              access: "private",
+              handleUploadUrl: "/api/blob-upload",
+              multipart: true,
+              contentType: state.sourceImage.type || "application/octet-stream",
+              abortSignal: controller.signal,
+            }
+          );
+          res = await fetch("/api/generate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ imagePath: blob.pathname, imageName: state.sourceImage.name, job: jobPayload }),
+            signal: controller.signal,
+          });
+        } else {
+          const formData = new FormData();
+          formData.append("image", state.sourceImage.file, state.sourceImage.name);
+          formData.append("job", JSON.stringify(jobPayload));
+          res = await fetch("/api/generate", { method: "POST", body: formData, signal: controller.signal });
+        }
 
         if (!res.ok || !res.body) {
           const errJson = (await res.json().catch(() => ({}))) as { error?: string };
@@ -973,3 +999,4 @@ export function useAppStore(): StoreContextValue {
   }
   return ctx;
 }
+

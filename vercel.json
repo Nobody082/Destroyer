@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "api/py-worker.py": {
+      "maxDuration": 300,
+      "includeFiles": "python/**"
+    }
+  }
+}
+

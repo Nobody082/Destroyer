@@ -19,6 +19,16 @@
 - Guide source file was not present in the workspace at Prompt 1 time; `docs/ref-guide.md` is reserved for it.
 
 ## 1. Architecture
+
+Production on Vercel keeps Next.js as the UI and request coordinator. The browser uploads source images directly to a private Vercel Blob store (up to 25 MB); `app/api/generate` plans work and invokes `api/py-worker.py` for each task. Python Functions run the existing engine and store original/results/thumbnails in private Blob. `/api/result` streams those blobs back. Configure a private Blob store for the project so Vercel provides `BLOB_READ_WRITE_TOKEN`. Local development continues to use the persistent `.venv` worker pool below.
+
+```text
+Browser → private Blob upload → Next.js API (plan + NDJSON progress)
+                                   └→ Vercel Python Function → Python engine → private Blob
+```
+
+Each Python task runs in its own invocation because Vercel Functions do not share a persistent worker process or filesystem. A generation request is capped by the configured Vercel function duration; large jobs can reach the platform's maximum.
+
 ```
 Browser (one page, React client state)
   │ fetch / NDJSON stream
@@ -168,3 +178,4 @@ docs/ PLAN.md DESIGN_SYSTEM.md VERSIONS.md ref-guide.md
 - [x] Cancel stops work within 2 s; a hung effect is killed at 90 s and the worker respawns
 - [x] No temp files inside project; tmp cleaned after 1 h
 - [x] `npm run lint` and `npx tsc --noEmit` clean; no console errors; AA contrast; keyboard-only usable
+

@@ -8,7 +8,11 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     const catalog = await loadCatalogFromDisk();
-    const pythonHealth = getWorkerPool().checkPythonEnv();
+    const pythonHealth = process.env.VERCEL
+      ? process.env.BLOB_READ_WRITE_TOKEN
+        ? { ok: true }
+        : { ok: false, error: "Cần tạo và kết nối Vercel Blob riêng tư với project." }
+      : getWorkerPool().checkPythonEnv();
     return NextResponse.json(
       {
         ...catalog,
@@ -30,3 +34,4 @@ export async function GET() {
     );
   }
 }
+
