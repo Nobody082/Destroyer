@@ -6,6 +6,7 @@
         "predev": "node scripts/ensure-env.mjs",
         "dev": "next dev -p 3002",
         "build": "next build",
+        "prestart": "node scripts/ensure-env.mjs",
         "start": "next start -p 3002",
         "lint": "eslint",
         "setup:env": "node scripts/ensure-env.mjs --force",
